@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" >
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" >
+    <title>Berkshire Hathaway Tracker</title>
+
+    <!-- Styles: token → base → layout → components -->
+    <link rel="stylesheet" href="/src/styles/tokens.css">
+    <link rel="stylesheet" href="/src/styles/base.css" >
+    <link rel="stylesheet" href="/src/styles/layout.css" >
+    <link rel="stylesheet" href="/src/styles/components.css" >
+  </head>
+
+  <body>
+    <!-- Global Header -->
+    <header class="site-header">
+      <div class="brand">
+        <span class="dot" aria-hidden="true"></span>
+        <strong>Berkshire Tracker</strong>
+      </div>
+      <div class="asof" id="asOf">As of —</div>
+    </header>
+
+    <!-- Main scrollytelling container (one “slide” per investment) -->
+    <main class="slides" id="slides">
+      <!-- Slide 1: Apple -->
+      <section class="slide" id="slide-aapl" aria-labelledby="slide-aapl-title">
+        <div class="slide-inner">
+          <!-- Left column: title + chart card -->
+          <div class="chart-col">
+            <h2 class="slide-title" id="slide-aapl-title">AAPL — Apple Inc.</h2>
+            <div class="chart-card">
+              <canvas
+                id="chart-aapl"
+                width="800"
+                height="420"
+                aria-label="Apple price chart"
+                role="img"
+              ></canvas>
+              <div class="method-note">
+                Price return only; first-purchase basis.
+              </div>
+            </div>
+          </div>
+
+          <!-- Right column: metrics + tabs -->
+          <aside class="panel-col">
+            <div class="metrics-card">
+              <!-- Tab buttons (accessible by default) -->
+              <div class="tablist" role="tablist" aria-label="Views">
+                <button
+                  role="tab"
+                  aria-selected="true"
+                  aria-controls="panel-performance"
+                  id="tab-performance"
+                  tabindex="0"
+                >
+                  Performance
+                </button>
+                <button
+                  role="tab"
+                  aria-selected="false"
+                  aria-controls="panel-compare"
+                  id="tab-compare"
+                  tabindex="-1"
+                >
+                  Compare
+                </button>
+              </div>
+
+              <!-- Tabpanel: Performance (visible) -->
+              <div
+                id="panel-performance"
+                role="tabpanel"
+                aria-labelledby="tab-performance"
+              >
+                <ul class="kpis">
+                  <li>
+                    <span class="kpi-label">Multiple</span
+                    ><span class="kpi-value" id="kpi-multiple">—</span>
+                  </li>
+                  <li>
+                    <span class="kpi-label">CAGR</span
+                    ><span class="kpi-value" id="kpi-cagr">—</span>
+                  </li>
+                  <li>
+                    <span class="kpi-label">Beat S&amp;P 500?</span
+                    ><span class="kpi-value" id="kpi-beat">—</span>
+                  </li>
+                </ul>
+                <div class="tiny-note">
+                  <span
+                    title="Multiple = Current adjusted ÷ Q1-2016 daily adjusted-close average."
+                    >ⓘ Multiple</span
+                  >
+                  <span
+                    title="CAGR = (Current ÷ Entry)^(1/years) − 1; Mar 31, 2016 → today."
+                    >ⓘ CAGR</span
+                  >
+                  <span
+                    title="Both series normalized to 100 at entry; price-only."
+                    >ⓘ Benchmark</span
+                  >
+                </div>
+              </div>
+
+              <!-- Tabpanel: Compare (hidden for now) -->
+              <div
+                id="panel-compare"
+                role="tabpanel"
+                aria-labelledby="tab-compare"
+                hidden
+              >
+                <div class="placeholder">Comparison view coming next.</div>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </section>
+    </main>
+
+    <!-- Global footer -->
+    <footer class="site-footer">
+      <nav class="footer-nav">
+        <a href="/">Home</a>
+        <a href="#slide-aapl">AAPL</a>
+        <!-- future slide links go here -->
+      </nav>
+      <small>Prototype · For education · Data mocked</small>
+    </footer>
+
+    <!-- App bootstrap (we'll implement main.js next) -->
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>

@@ -1,0 +1,53 @@
+:root {
+    /* ---------- Color palette ---------- */
+    --bg: #0f1113;
+    /* app background */
+    --card: #171a1d;
+    /* panels/cards */
+    --surface: #1e2227;
+    /* chart area / inner surfaces */
+    --line: #2a2f36;
+    /* borders/dividers */
+
+    --text: #e6eaed;
+    /* primary text */
+    --muted: #95a1ab;
+    /* secondary text */
+    --accent: #5aa8ff;
+    /* brand / active tab underline */
+    --up: #19c37d;
+    /* positive numbers */
+    --down: #ff6464;
+    /* negative numbers / drawdowns */
+
+    /* ---------- Typography ---------- */
+    --font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI",
+        Roboto, Inter, Arial, "Noto Sans", sans-serif;
+
+    /* Type scale (kept modest for data density) */
+    --fs-xxl: 28px;
+    /* big numbers / slide titles */
+    --fs-xl: 22px;
+    /* KPI values / section headers */
+    --fs-lg: 18px;
+    /* subheads */
+    --fs-md: 15px;
+    /* body text */
+    --fs-sm: 13px;
+    /* captions / notes */
+
+    /* ---------- Spacing ---------- */
+    --space-0: 0;
+    --space-1: 4px;
+    --space-2: 8px;
+    --space-3: 12px;
+    --space-4: 16px;
+    --space-5: 24px;
+    --space-6: 32px;
+
+    /* ---------- Shape & elevation ---------- */
+    --radius: 14px;
+    /* card corners */
+    --shadow: 0 2px 12px rgba(0, 0, 0, 0.25);
+    /* subtle depth */
+}

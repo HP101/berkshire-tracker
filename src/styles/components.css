@@ -1,0 +1,79 @@
+/* --- Tabs --- */
+.tablist {
+    display: flex;
+    gap: var(--space-2);
+    border-bottom: 1px solid var(--line);
+    margin-bottom: var(--space-4);
+}
+
+[role="tab"] {
+    appearance: none;
+    border: 0;
+    background: transparent;
+    color: var(--muted);
+    padding: var(--space-2) var(--space-3);
+    border-bottom: 2px solid transparent;
+    font-size: var(--fs-md);
+    line-height: 1;
+    cursor: pointer;
+}
+
+[role="tab"][aria-selected="true"] {
+    color: var(--text);
+    border-bottom-color: var(--accent);
+}
+
+[role="tabpanel"] {
+    padding-top: var(--space-2);
+}
+
+[role="tabpanel"][hidden] {
+    display: none;
+}
+
+/* --- KPIs (metrics list) --- */
+.kpis {
+    list-style: none;
+    display: grid;
+    gap: var(--space-3);
+    padding: 0;
+    margin: 0 0 var(--space-3);
+}
+
+.kpi-label {
+    color: var(--muted);
+    font-size: var(--fs-sm);
+}
+
+.kpi-value {
+    font-size: var(--fs-xl);
+    font-weight: 650;
+}
+
+/* Tiny helper notes (methodology) */
+.tiny-note {
+    display: flex;
+    gap: var(--space-4);
+    color: var(--muted);
+    font-size: var(--fs-sm);
+}
+
+.tiny-note span {
+    cursor: help;
+    /* native title tooltip hint */
+}
+
+/* Cards (reuse for metrics-card, etc.) */
+.card,
+.metrics-card {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+}
+
+/* Footer nav */
+.footer-nav {
+    display: flex;
+    gap: var(--space-4);
+}
