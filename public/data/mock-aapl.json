@@ -1,0 +1,38 @@
+{
+    "ticker": "AAPL",
+    "name": "Apple Inc.",
+    "invested_year": 2016,
+    
+    "portfolio_weight": 0.22,
+    "portfolio_rank": 1,
+    "initial_investment": 1069000000,
+    "total_shares_bought": 44541667,
+    
+    "entry": { "price": 24, "date": "2016-03-31", "method": "Q1 average (mock)" },
+    "current": { "price": 258, "date": "2025-11-10" },
+    "benchmark": { "symbol": "SPY", "entry_price": 176, "current_price": 670 },
+    "price_series": [
+      { "date": "2016-04-01", "close": 25.1 },
+      { "date": "2017-01-03", "close": 28.8 },
+      { "date": "2018-01-02", "close": 39.2 },
+      { "date": "2019-01-02", "close": 38.0 },
+      { "date": "2020-01-02", "close": 74.4 },
+      { "date": "2021-01-04", "close": 129.4 },
+      { "date": "2022-01-03", "close": 182.0 },
+      { "date": "2023-01-03", "close": 130.0 },
+      { "date": "2024-01-02", "close": 185.0 },
+      { "date": "2025-01-02", "close": 255.0 }
+    ],
+    
+    "buffett_metrics": {
+      "roic": {
+        "value": 0.32,
+        "rating": "GOOD",
+        "trend": "up",
+        "description": "Return on Invested Capital measures how efficiently a company generates profits from its capital. Higher is better."
+      }
+    },
+    
+    "financials": { "ttm": {}, "annual": [] }
+  }
+  

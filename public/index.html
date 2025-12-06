@@ -1,136 +1,154 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" >
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" >
-    <title>Berkshire Hathaway Tracker</title>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Berkshire Tracker — v0</title>
 
-    <!-- Styles: token → base → layout → components -->
-    <link rel="stylesheet" href="/src/styles/tokens.css">
-    <link rel="stylesheet" href="/src/styles/base.css" >
-    <link rel="stylesheet" href="/src/styles/layout.css" >
-    <link rel="stylesheet" href="/src/styles/components.css" >
-  </head>
 
-  <body>
-    <!-- Global Header -->
-    <header class="site-header">
-      <div class="brand">
-        <span class="dot" aria-hidden="true"></span>
-        <strong>Berkshire Tracker</strong>
-      </div>
-      <div class="asof" id="asOf">As of —</div>
-    </header>
+  <link rel="stylesheet" href="/src/styles/tokens.css">
+  <link rel="stylesheet" href="/src/styles/base.css">
+  <link rel="stylesheet" href="/src/styles/layout.css">
+  <link rel="stylesheet" href="/src/styles/components.css">
+  <link rel="stylesheet" href="/src/styles/metric-card.css">
+</head>
+<body>
 
-    <!-- Main scrollytelling container (one “slide” per investment) -->
-    <main class="slides" id="slides">
-      <!-- Slide 1: Apple -->
-      <section class="slide" id="slide-aapl" aria-labelledby="slide-aapl-title">
-        <div class="slide-inner">
-          <!-- Left column: title + chart card -->
-          <div class="chart-col">
-            <h2 class="slide-title" id="slide-aapl-title">AAPL — Apple Inc.</h2>
-            <div class="chart-card">
-              <canvas
-                id="chart-aapl"
-                width="800"
-                height="420"
-                aria-label="Apple price chart"
-                role="img"
-              ></canvas>
-              <div class="method-note">
-                Price return only; first-purchase basis.
-              </div>
+  <header class="site-header">
+    <div class="brand">
+      <span class="dot" aria-hidden="true"></span>
+      <strong>Berkshire Tracker</strong>
+    </div>
+    <div class="asof" id="asOf">As of —</div>
+  </header>
+
+  <main id="app">
+
+    <!-- Section 1: Apple -->
+    <section class="stock-section" id="aapl" data-ticker="AAPL">
+      <div class="section-inner">
+        <!-- Left: Sticky chart only -->
+        <aside class="sticky-chart" aria-label="Apple chart">
+          <div class="chart-card">
+            <h2 class="chart-title">AAPL</h2>
+            <div class="chart-container">
+              <canvas id="chart-aapl" width="800" height="420" aria-label="Apple price chart" role="img"></canvas>
             </div>
+            <div class="method-note">Price return only; first-purchase basis.</div>
           </div>
+        </aside>
 
-          <!-- Right column: metrics + tabs -->
-          <aside class="panel-col">
-            <div class="metrics-card">
-              <!-- Tab buttons (accessible by default) -->
-              <div class="tablist" role="tablist" aria-label="Views">
-                <button
-                  role="tab"
-                  aria-selected="true"
-                  aria-controls="panel-performance"
-                  id="tab-performance"
-                  tabindex="0"
-                >
-                  Performance
-                </button>
-                <button
-                  role="tab"
-                  aria-selected="false"
-                  aria-controls="panel-compare"
-                  id="tab-compare"
-                  tabindex="-1"
-                >
-                  Compare
-                </button>
-              </div>
+        <!-- Right: Scrolling content for this stock -->
+        <article class="stock-content">
+          <h2 class="stock-title">Apple Inc.</h2>
+          <p class="stock-meta">First invested: 2016 · Window: price-only since entry · Method: Q1-2016 average</p>
 
-              <!-- Tabpanel: Performance (visible) -->
-              <div
-                id="panel-performance"
-                role="tabpanel"
-                aria-labelledby="tab-performance"
-              >
-                <ul class="kpis">
-                  <li>
-                    <span class="kpi-label">Multiple</span
-                    ><span class="kpi-value" id="kpi-multiple">—</span>
-                  </li>
-                  <li>
-                    <span class="kpi-label">CAGR</span
-                    ><span class="kpi-value" id="kpi-cagr">—</span>
-                  </li>
-                  <li>
-                    <span class="kpi-label">Beat S&amp;P 500?</span
-                    ><span class="kpi-value" id="kpi-beat">—</span>
-                  </li>
-                </ul>
-                <div class="tiny-note">
-                  <span
-                    title="Multiple = Current adjusted ÷ Q1-2016 daily adjusted-close average."
-                    >ⓘ Multiple</span
-                  >
-                  <span
-                    title="CAGR = (Current ÷ Entry)^(1/years) − 1; Mar 31, 2016 → today."
-                    >ⓘ CAGR</span
-                  >
-                  <span
-                    title="Both series normalized to 100 at entry; price-only."
-                    >ⓘ Benchmark</span
-                  >
-                </div>
-              </div>
+          <!-- Metrics rendered by JavaScript -->
+          <div id="metrics-aapl" class="metrics-container" style="margin-top: var(--space-5);"></div>
 
-              <!-- Tabpanel: Compare (hidden for now) -->
-              <div
-                id="panel-compare"
-                role="tabpanel"
-                aria-labelledby="tab-compare"
-                hidden
-              >
-                <div class="placeholder">Comparison view coming next.</div>
-              </div>
+          <p style="margin-top: var(--space-5); line-height: 1.6;">
+            Apple is Berkshire's largest public holding. Warren Buffett began buying in 2016 
+            and has praised Apple's ecosystem and brand loyalty.  Apple is Berkshire's largest public holding. Warren Buffett began buying in 2016 
+            and has praised Apple's ecosystem and brand loyalty.  Apple is Berkshire's largest public holding. Warren Buffett began buying in 2016 
+            and has praised Apple's ecosystem and brand loyalty.  Apple is Berkshire's largest public holding. Warren Buffett began buying in 2016 
+            and has praised Apple's ecosystem and brand loyalty. Apple is Berkshire's largest public holding. Warren Buffett began buying in 2016 
+            and has praised Apple's ecosystem and brand loyalty. Apple is Berkshire's largest public holding. Warren Buffett began buying in 2016 
+            and has praised Apple's ecosystem and brand loyalty. Apple is Berkshire's largest public holding. Warren Buffett began buying in 2016 
+            and has praised Apple's ecosystem and brand loyalty.
+
+            Apple is Berkshire's largest public holding. Warren Buffett began buying in 2016 
+            and has praised Apple's ecosystem and brand loyalty.  Apple is Berkshire's largest public holding. Warren Buffett began buying in 2016 
+            and has praised Apple's ecosystem and brand loyalty.  Apple is Berkshire's largest public holding. Warren Buffett began buying in 2016 
+            and has praised Apple's ecosystem and brand loyalty.  Apple is Berkshire's largest public holding. Warren Buffett began buying in 2016 
+            and has praised Apple's ecosystem and brand loyalty. Apple is Berkshire's largest public holding. Warren Buffett began buying in 2016 
+            and has praised Apple's ecosystem and brand loyalty. Apple is Berkshire's largest public holding. Warren Buffett began buying in 2016 
+            and has praised Apple's ecosystem and brand loyalty. Apple is Berkshire's largest public holding. Warren Buffett began buying in 2016 
+            and has praised Apple's ecosystem and brand loyalty.
+
+            Apple is Berkshire's largest public holding. Warren Buffett began buying in 2016 
+            and has praised Apple's ecosystem and brand loyalty.  Apple is Berkshire's largest public holding. Warren Buffett began buying in 2016 
+            and has praised Apple's ecosystem and brand loyalty.  Apple is Berkshire's largest public holding. Warren Buffett began buying in 2016 
+            and has praised Apple's ecosystem and brand loyalty.  Apple is Berkshire's largest public holding. Warren Buffett began buying in 2016 
+            and has praised Apple's ecosystem and brand loyalty. Apple is Berkshire's largest public holding. Warren Buffett began buying in 2016 
+            and has praised Apple's ecosystem and brand loyalty. Apple is Berkshire's largest public holding. Warren Buffett began buying in 2016 
+            and has praised Apple's ecosystem and brand loyalty. Apple is Berkshire's largest public holding. Warren Buffett began buying in 2016 
+            and has praised Apple's ecosystem and brand loyalty.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <!-- Section 2: American Express -->
+    <section class="stock-section" id="axp" data-ticker="AXP">
+      <div class="section-inner">
+        <aside class="sticky-chart" aria-label="American Express chart">
+          <div class="chart-card">
+            <h2 class="chart-title">AXP</h2>
+            <div class="chart-container">
+              <canvas id="chart-axp" width="800" height="420" aria-label="American Express price chart" role="img"></canvas>
             </div>
-          </aside>
-        </div>
-      </section>
-    </main>
+            <div class="method-note">Price return only; first-purchase basis.</div>
+          </div>
+        </aside>
 
-    <!-- Global footer -->
-    <footer class="site-footer">
-      <nav class="footer-nav">
-        <a href="/">Home</a>
-        <a href="#slide-aapl">AAPL</a>
-        <!-- future slide links go here -->
-      </nav>
-      <small>Prototype · For education · Data mocked</small>
-    </footer>
+        <article class="stock-content">
+          <h2 class="stock-title">American Express</h2>
+          <p class="stock-meta">First invested: 1964 · Financials use bank-specific metrics (v2)</p>
+          
+          <div id="metrics-axp" class="metrics-container" style="margin-top: var(--space-5);"></div>
 
-    <!-- App bootstrap (we'll implement main.js next) -->
-    <script type="module" src="/src/main.js"></script>
-  </body>
+          <p style="margin-top: var(--space-5); line-height: 1.6;">
+            One of Berkshire's longest-held positions, American Express represents the kind of 
+            durable competitive advantage Buffett seeks.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <!-- Section 3: Coca-Cola -->
+    <section class="stock-section" id="ko" data-ticker="KO">
+      <div class="section-inner">
+        <aside class="sticky-chart" aria-label="Coca-Cola chart">
+          <div class="chart-card">
+            <h2 class="chart-title">KO</h2>
+            <div class="chart-container">
+              <canvas id="chart-ko" width="800" height="420" aria-label="Coca-Cola price chart" role="img"></canvas>
+            </div>
+            <div class="method-note">Price return only; first-purchase basis.</div>
+          </div>
+        </aside>
+
+        <article class="stock-content">
+          <h2 class="stock-title">Coca-Cola</h2>
+          <p class="stock-meta">First invested: 1988 · Classic Buffett compounder</p>
+          
+          <div id="metrics-ko" class="metrics-container" style="margin-top: var(--space-5);"></div>
+
+          <p style="margin-top: var(--space-5); line-height: 1.6;">
+            A classic Buffett investment, Coca-Cola exemplifies his preference for simple, 
+            predictable businesses with global reach.
+          </p>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <nav class="footer-nav">
+      <a href="#aapl">AAPL</a>
+      <a href="#axp">AXP</a>
+      <a href="#ko">KO</a>
+    </nav>
+    <small>Prototype · For education · Data mocked</small>
+  </footer>
+
+  <!-- Chart.js (UMD bundle) -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.6/dist/chart.umd.min.js"></script>
+<!-- Time scale adapter -->
+<script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns@3"></script>
+
+  <!-- App bootstrap -->
+  <script type="module" src="/src/main.js"></script>
+</body>
 </html>

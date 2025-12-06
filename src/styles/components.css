@@ -35,27 +35,38 @@
 .kpis {
     list-style: none;
     display: grid;
-    gap: var(--space-3);
+    gap: var(--space-2); /* reduced from space-3 */
     padding: 0;
     margin: 0 0 var(--space-3);
+}
+
+.kpis li {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: var(--space-2);
 }
 
 .kpi-label {
     color: var(--muted);
     font-size: var(--fs-sm);
+    flex: 0 0 auto;
 }
 
 .kpi-value {
-    font-size: var(--fs-xl);
+    font-size: var(--fs-lg); /* reduced from xl */
     font-weight: 650;
+    text-align: right;
 }
 
 /* Tiny helper notes (methodology) */
 .tiny-note {
     display: flex;
-    gap: var(--space-4);
+    flex-wrap: wrap;
+    gap: var(--space-3); /* reduced from space-4 */
     color: var(--muted);
-    font-size: var(--fs-sm);
+    font-size: 12px; /* smaller than fs-sm */
+    line-height: 1.4;
 }
 
 .tiny-note span {
@@ -70,6 +81,24 @@
     border: 1px solid var(--line);
     border-radius: var(--radius);
     box-shadow: var(--shadow);
+}
+
+/* Custom scrollbar for metrics card */
+.metrics-card::-webkit-scrollbar {
+    width: 6px;
+}
+
+.metrics-card::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.metrics-card::-webkit-scrollbar-thumb {
+    background: var(--line);
+    border-radius: 3px;
+}
+
+.metrics-card::-webkit-scrollbar-thumb:hover {
+    background: var(--muted);
 }
 
 /* Footer nav */

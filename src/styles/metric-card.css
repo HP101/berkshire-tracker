@@ -1,0 +1,127 @@
+/* =========================================================
+   METRIC CARD COMPONENT STYLES
+   Styles for the reusable metric card component
+   ========================================================= */
+
+.metric-card {
+  background: var(--bg-secondary);
+  border-radius: 8px;
+  overflow: hidden;
+  margin-bottom: var(--space-3);
+  transition: box-shadow 0.2s ease;
+}
+
+.metric-card:hover {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Row (clickable container) */
+.metric-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-4);
+  gap: var(--space-3);
+}
+
+.metric-row--clickable {
+  cursor: pointer;
+  user-select: none;
+}
+
+.metric-row--clickable:hover {
+  background: rgba(0, 0, 0, 0.02);
+}
+
+/* Left side: name + label */
+.metric-left {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  flex: 1;
+}
+
+.metric-name {
+  color: var(--text-primary);
+  font-size: var(--fs-base);
+  font-weight: 500;
+}
+
+.metric-label {
+  padding: 4px 12px;
+  border-radius: 4px;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  white-space: nowrap;
+}
+
+/* Right side: value + chevron */
+.metric-right {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.metric-value {
+  color: var(--text-primary);
+  font-size: var(--fs-lg);
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.metric-chevron {
+  color: var(--text-secondary);
+  transition: transform 0.2s ease;
+  flex-shrink: 0;
+}
+
+/* Rotate chevron when open */
+.metric-card--open .metric-chevron {
+  transform: rotate(180deg);
+}
+
+/* Description (accordion content) */
+.metric-description {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease, padding 0.3s ease;
+  padding: 0 var(--space-4);
+  background: rgba(90, 168, 255, 0.05);
+  border-top: 1px solid transparent;
+}
+
+.metric-card--open .metric-description {
+  max-height: 500px; /* Large enough for most descriptions */
+  padding: var(--space-4);
+  border-top-color: var(--border-color);
+}
+
+.metric-description p {
+  margin: 0;
+  color: var(--text-secondary);
+  font-size: var(--fs-sm);
+  line-height: 1.6;
+}
+
+/* Responsive adjustments */
+@media (max-width: 640px) {
+  .metric-row {
+    padding: var(--space-3);
+  }
+  
+  .metric-left {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-1);
+  }
+  
+  .metric-name {
+    font-size: var(--fs-sm);
+  }
+  
+  .metric-value {
+    font-size: var(--fs-base);
+  }
+}

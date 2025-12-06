@@ -1,0 +1,22 @@
+{
+  "ticker": "AXP",
+  "name": "American Express",
+  "invested_year": 1964,
+  "entry": { "price": 8, "date": "2016-03-31", "method": "Q1 average (mock)" },
+  "current": { "price": 60, "date": "2025-11-10" },
+  "benchmark": { "symbol": "SPY", "entry_price": 176, "current_price": 670 },
+  "price_series": [
+    { "date": "2016-04-01", "close": 8.5 },
+    { "date": "2017-01-03", "close": 11.2 },
+    { "date": "2018-01-02", "close": 13.8 },
+    { "date": "2019-01-02", "close": 15.4 },
+    { "date": "2020-01-02", "close": 18.2 },
+    { "date": "2021-01-04", "close": 24.8 },
+    { "date": "2022-01-03", "close": 28.6 },
+    { "date": "2023-01-03", "close": 35.2 },
+    { "date": "2024-01-02", "close": 48.5 },
+    { "date": "2025-01-02", "close": 58.0 }
+  ],
+  "financials": { "ttm": {}, "annual": [] }
+}
+

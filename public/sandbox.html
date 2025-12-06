@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Sandbox — Berkshire Tracker</title>
+
+  <!-- Using the same stylesheets as main app -->
+  <link rel="stylesheet" href="/src/styles/tokens.css">
+  <link rel="stylesheet" href="/src/styles/base.css">
+  <link rel="stylesheet" href="/src/styles/layout.css">
+  <link rel="stylesheet" href="/src/styles/components.css">
+  
+  <!-- Component-specific styles -->
+  <link rel="stylesheet" href="/src/styles/metric-card.css">
+
+  <style>
+    /* Sandbox-specific styles */
+    .sandbox-header {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      padding: var(--space-4);
+      text-align: center;
+      margin-bottom: var(--space-6);
+    }
+    
+    .sandbox-header h1 {
+      margin: 0;
+      font-size: var(--fs-2xl);
+    }
+    
+    .sandbox-header p {
+      margin: var(--space-2) 0 0;
+      opacity: 0.9;
+      font-size: var(--fs-base);
+    }
+    
+    .experiment-section {
+      margin: var(--space-6) auto;
+      max-width: 1200px;
+      padding: 0 var(--space-4);
+    }
+    
+    .experiment-card {
+      background: var(--bg-secondary);
+      border-radius: 8px;
+      padding: var(--space-5);
+      margin-bottom: var(--space-4);
+    }
+    
+    .experiment-card h2 {
+      margin: 0 0 var(--space-3);
+      color: var(--text-primary);
+    }
+    
+    .experiment-card p {
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+    
+    .test-area {
+      background: var(--bg-primary);
+      border: 1px solid var(--border-color);
+      border-radius: 4px;
+      padding: var(--space-4);
+      margin-top: var(--space-3);
+      min-height: 200px;
+    }
+    
+    .back-link {
+      display: inline-block;
+      padding: var(--space-2) var(--space-4);
+      background: rgba(255,255,255,0.1);
+      color: white;
+      text-decoration: none;
+      border-radius: 4px;
+      margin-top: var(--space-3);
+      transition: background 0.2s;
+    }
+    
+    .back-link:hover {
+      background: rgba(255,255,255,0.2);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Sandbox Header -->
+  <div class="sandbox-header">
+    <h1>🧪 Metrics Sandbox</h1>
+    <p>Testing metrics calculations and display</p>
+    <a href="/public/index.html" class="back-link">← Back to Main App</a>
+  </div>
+
+  <main class="experiment-section">
+
+    <!-- Chart prototype container -->
+    <div id="chart-demo" style="max-width: 900px; margin: 32px auto;">
+      <h2 style="margin:0 0 12px; font: 600 18px/1.3 ui-sans-serif, system-ui;">Apple — Indexed to 100 at Entry</h2>
+      <!-- The canvas Chart.js will draw into -->
+      <canvas id="myChart" width="900" height="420" aria-label="Apple price chart" role="img"></canvas>
+    </div>
+
+    <!-- Metrics Display -->
+    <div class="experiment-card">
+      <h2>Metrics Testing</h2>
+      <p>Testing all calculated and hardcoded metrics for AAPL</p>
+      <div class="test-area" id="test-data">
+        <pre id="data-output" style="color: var(--text-secondary); font-family: monospace; font-size: 14px;">
+<!-- Metrics output will appear here... -->
+        </pre>
+      </div>
+    </div>
+
+    <!-- Metric Component Testing -->
+    <div class="experiment-card">
+      <h2>Metric Component - All 6 Metrics</h2>
+      <p>Testing the reusable metric card component with all calculated metrics</p>
+      <div id="all-metrics-container" style="margin-top: var(--space-3);"></div>
+    </div>
+
+  </main>
+
+  <!-- Footer with helpful info -->
+  <footer class="site-footer">
+    <small>
+      <a href="/public/index.html" style="color: var(--accent);">Back to Main App</a>
+    </small>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.6/dist/chart.umd.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns@3"></script>
+
+  <!-- Sandbox bootstrap script - using type="module" to enable imports -->
+  <script type="module" src="/src/sandbox.js"></script>
+</body>
+</html>

@@ -1,0 +1,22 @@
+{
+  "ticker": "KO",
+  "name": "Coca-Cola",
+  "invested_year": 1988,
+  "entry": { "price": 35, "date": "2016-03-31", "method": "Q1 average (mock)" },
+  "current": { "price": 62, "date": "2025-11-10" },
+  "benchmark": { "symbol": "SPY", "entry_price": 176, "current_price": 670 },
+  "price_series": [
+    { "date": "2016-04-01", "close": 36.2 },
+    { "date": "2017-01-03", "close": 38.5 },
+    { "date": "2018-01-02", "close": 40.1 },
+    { "date": "2019-01-02", "close": 42.8 },
+    { "date": "2020-01-02", "close": 44.2 },
+    { "date": "2021-01-04", "close": 48.6 },
+    { "date": "2022-01-03", "close": 52.3 },
+    { "date": "2023-01-03", "close": 55.1 },
+    { "date": "2024-01-02", "close": 58.7 },
+    { "date": "2025-01-02", "close": 61.5 }
+  ],
+  "financials": { "ttm": {}, "annual": [] }
+}
+

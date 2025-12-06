@@ -1,0 +1,12 @@
+{
+  "name": "berkshire-tracker",
+  "version": "1.0.0",
+  "description": "Berkshire Hathaway stock tracker",
+  "scripts": {
+    "dev": "serve . -l 5173",
+    "lint": "eslint src --ext .js"
+  },
+  "devDependencies": {
+    "serve": "^14.2.5"
+  }
+}
