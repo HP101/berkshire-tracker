@@ -15,7 +15,7 @@ import {
   calculateYearsInvested
 } from './lib/metrics.js';
 
-import { createMetricCard } from './lib/components.js';
+import { createMetricCard, createStockHeader, createAtAGlance } from './lib/components.js';
 
 /* ---------- DOM references ---------- */
 const $ = (sel, root = document) => root.querySelector(sel);
@@ -142,13 +142,86 @@ const formatters = {
   },
 };
 
-/* ---------- Render metrics for a stock ---------- */
-function renderMetrics(ticker, data) {
-  const container = $(`#metrics-${ticker.toLowerCase()}`);
+/* ---------- Render stock header ---------- */
+function renderStockHeader(ticker, data) {
+  const container = $(`#header-${ticker.toLowerCase()}`);
   if (!container) return;
 
   // Clear container
   container.innerHTML = '';
+
+  // Calculate price change (mock for now - we'll use live data later)
+  const priceChange = data.current.price - data.entry.price;
+  const priceChangePercent = (priceChange / data.entry.price) * 100;
+
+  // Create and append header
+  const header = createStockHeader({
+    ticker: ticker,
+    name: data.name,
+    currentPrice: data.current.price,
+    priceChange: priceChange,
+    priceChangePercent: priceChangePercent
+  });
+
+  container.appendChild(header);
+}
+
+/* ---------- Render "At a Glance" summary ---------- */
+function renderAtAGlance(ticker, data) {
+  const container = $(`#glance-${ticker.toLowerCase()}`);
+  if (!container) return;
+
+  // Clear container
+  container.innerHTML = '';
+
+  // Calculate key metrics
+  const years = calculateYearsInvested(data.entry.date, data.current.date);
+  const currentValue = calculateCurrentValue(data.total_shares_bought, data.current.price);
+  const cagr = calculateCAGR(data.initial_investment, currentValue, years);
+  const sp500CAGR = calculateSP500CAGR(
+    data.benchmark.entry_price,
+    data.benchmark.current_price,
+    years
+  );
+  const sp500Hypothetical = calculateSP500Hypothetical(
+    data.initial_investment,
+    data.benchmark.entry_price,
+    data.benchmark.current_price
+  );
+  const didBeatSP500 = beatSP500(cagr, sp500CAGR);
+  const sp500Difference = currentValue - sp500Hypothetical;
+
+  // Extract start year from entry date
+  const startYear = new Date(data.entry.date).getFullYear();
+
+  // Create and append the at-a-glance card
+  const glanceCard = createAtAGlance({
+    startYear: startYear,
+    invested: data.initial_investment,
+    returned: currentValue,
+    beatSP500: didBeatSP500,
+    sp500Hypothetical: sp500Hypothetical,
+    sp500Difference: sp500Difference
+  });
+
+  container.appendChild(glanceCard);
+}
+
+/* ---------- Render metrics for a stock ---------- */
+function renderMetrics(ticker, data) {
+  const tickerLower = ticker.toLowerCase();
+  
+  // Get containers
+  const basicContainer = $(`#metrics-basic-${tickerLower}`);
+  const sp500Container = $(`#metrics-sp500-${tickerLower}`);
+  const buffettContainer = $(`#metrics-buffett-${tickerLower}`);
+  
+  if (!basicContainer || !sp500Container || !buffettContainer) return;
+
+  // Clear containers
+  basicContainer.innerHTML = '';
+  sp500Container.innerHTML = '';
+  buffettContainer.innerHTML = '';
 
   // Calculate all metrics
   const years = calculateYearsInvested(data.entry.date, data.current.date);
@@ -168,13 +241,13 @@ function renderMetrics(ticker, data) {
   const didBeatSP500 = beatSP500(cagr, sp500CAGR);
   const beatByPP = calculateBeatByPercentagePoints(cagr, sp500CAGR);
 
-  // Create metrics data
-  const metricsData = [
+  // === BASIC METRICS ===
+  const basicMetrics = [
     {
       name: 'Portfolio Weight',
       value: formatters.percent(data.portfolio_weight, 0),
-      label: 'GOOD',
-      description: 'This represents the percentage of Berkshire Hathaway\'s total portfolio allocated to this stock.'
+      label: data.portfolio_weight > 0.15 ? 'HIGH' : 'GOOD',
+      description: 'Percentage of Berkshire Hathaway\'s total portfolio allocated to this stock.'
     },
     {
       name: 'Years Invested',
@@ -183,30 +256,115 @@ function renderMetrics(ticker, data) {
     },
     {
       name: 'Initial Investment',
-      value: formatters.bigUSD(data.initial_investment)
+      value: formatters.bigUSD(data.initial_investment),
+      description: 'Total amount Berkshire invested when building this position.'
     },
     {
-      name: 'Total Shares',
-      value: data.total_shares_bought.toLocaleString(),
-      description: 'Total number of shares purchased by Berkshire Hathaway.'
+      name: 'Total Return',
+      value: formatters.bigUSD(totalReturnDollars),
+      label: totalReturnDollars > 0 ? 'REALLY GOOD' : 'BAD',
+      description: `Total dollar profit/loss. Current value: ${formatters.bigUSD(currentValue)}.`
     },
     {
       name: 'CAGR',
       value: formatters.percent(cagr, 1),
-      label: cagr > 0.20 ? 'REALLY GOOD' : cagr > 0.15 ? 'GOOD' : 'AVERAGE',
-      description: `Compound Annual Growth Rate: ${formatters.percent(cagr, 1)} per year.`
-    },
-    {
-      name: 'Beat S&P 500?',
-      value: didBeatSP500 ? 'YES' : 'NO',
-      label: didBeatSP500 ? 'REALLY GOOD' : 'AVERAGE',
-      description: `Outperformed S&P 500 by ${beatByPP.toFixed(1)} percentage points. If invested in S&P: ${formatters.bigUSD(sp500Hypothetical)}.`
+      label: cagr > 0.20 ? 'REALLY GOOD' : cagr > 0.15 ? 'GOOD' : cagr > 0.10 ? 'AVERAGE' : 'BAD',
+      description: `Compound Annual Growth Rate: the average yearly return since entry.`
     }
   ];
 
-  // Render metric cards
-  metricsData.forEach(metric => {
-    container.appendChild(createMetricCard(metric));
+  // === S&P 500 METRICS ===
+  const sp500Metrics = [
+    {
+      name: 'Beat S&P 500 by',
+      value: beatByPP >= 0 ? `+${beatByPP.toFixed(1)} pp` : `${beatByPP.toFixed(1)} pp`,
+      label: beatByPP > 50 ? 'REALLY GOOD' : beatByPP > 0 ? 'GOOD' : 'AVERAGE',
+      description: `Outperformed S&P 500 by ${beatByPP.toFixed(1)} percentage points. S&P CAGR: ${formatters.percent(sp500CAGR, 1)}. If invested in S&P: ${formatters.bigUSD(sp500Hypothetical)}.`
+    }
+  ];
+
+  // === BUFFETT METRICS ===
+  const buffettMetricsData = data.buffett_metrics || {};
+  const buffettMetrics = [
+    {
+      name: 'ROIC',
+      value: buffettMetricsData.roic?.value ? formatters.percent(buffettMetricsData.roic.value, 1) : '—',
+      label: buffettMetricsData.roic?.rating || null,
+      description: buffettMetricsData.roic?.description || 'Return on Invested Capital: measures how efficiently a company generates profits from its capital.'
+    },
+    {
+      name: 'Free Cash Flow',
+      value: buffettMetricsData.fcf?.value ? formatters.bigUSD(buffettMetricsData.fcf.value) : '—',
+      label: buffettMetricsData.fcf?.rating || null,
+      description: buffettMetricsData.fcf?.description || 'Cash generated after capital expenditures. The lifeblood of a business.'
+    },
+    {
+      name: 'FCF Margin',
+      value: buffettMetricsData.fcf_margin?.value ? formatters.percent(buffettMetricsData.fcf_margin.value, 1) : '—',
+      label: buffettMetricsData.fcf_margin?.rating || null,
+      description: buffettMetricsData.fcf_margin?.description || 'Free cash flow as a percentage of revenue. Higher is better.'
+    },
+    {
+      name: 'Revenue CAGR',
+      value: buffettMetricsData.revenue_cagr?.value ? formatters.percent(buffettMetricsData.revenue_cagr.value, 1) : '—',
+      label: buffettMetricsData.revenue_cagr?.rating || null,
+      description: buffettMetricsData.revenue_cagr?.description || 'Revenue growth rate over time. Buffett likes steady, predictable growth.'
+    },
+    {
+      name: 'Net Income CAGR',
+      value: buffettMetricsData.net_income_cagr?.value ? formatters.percent(buffettMetricsData.net_income_cagr.value, 1) : '—',
+      label: buffettMetricsData.net_income_cagr?.rating || null,
+      description: buffettMetricsData.net_income_cagr?.description || 'Profit growth rate. Should ideally exceed revenue growth (margin expansion).'
+    },
+    {
+      name: 'Operating Margin Stability',
+      value: buffettMetricsData.operating_margin_stability?.value || '—',
+      label: buffettMetricsData.operating_margin_stability?.rating || null,
+      description: buffettMetricsData.operating_margin_stability?.description || 'Consistency of operating margins. Buffett values predictability.'
+    },
+    {
+      name: 'Net Income Margin Stability',
+      value: buffettMetricsData.net_margin_stability?.value || '—',
+      label: buffettMetricsData.net_margin_stability?.rating || null,
+      description: buffettMetricsData.net_margin_stability?.description || 'Consistency of net profit margins over time.'
+    },
+    {
+      name: 'Reinvestment Rate',
+      value: buffettMetricsData.reinvestment_rate?.value ? formatters.percent(buffettMetricsData.reinvestment_rate.value, 1) : '—',
+      label: buffettMetricsData.reinvestment_rate?.rating || null,
+      description: buffettMetricsData.reinvestment_rate?.description || 'Percentage of earnings reinvested into the business vs returned to shareholders.'
+    },
+    {
+      name: 'Dividend CAGR',
+      value: buffettMetricsData.dividend_cagr?.value ? formatters.percent(buffettMetricsData.dividend_cagr.value, 1) : '—',
+      label: buffettMetricsData.dividend_cagr?.rating || null,
+      description: buffettMetricsData.dividend_cagr?.description || 'Dividend growth rate. Shows management confidence and shareholder friendliness.'
+    },
+    {
+      name: 'Net Debt/EBITDA',
+      value: buffettMetricsData.net_debt_ebitda?.value ? buffettMetricsData.net_debt_ebitda.value.toFixed(1) + 'x' : '—',
+      label: buffettMetricsData.net_debt_ebitda?.rating || null,
+      description: buffettMetricsData.net_debt_ebitda?.description || 'Leverage ratio. Lower is better. Buffett prefers companies with manageable debt.'
+    },
+    {
+      name: 'Recession Performance',
+      value: buffettMetricsData.recession_performance?.value || '—',
+      label: buffettMetricsData.recession_performance?.rating || null,
+      description: buffettMetricsData.recession_performance?.description || 'How the company performed during economic downturns. Resilience matters.'
+    }
+  ];
+
+  // Render all metrics to their respective containers
+  basicMetrics.forEach(metric => {
+    basicContainer.appendChild(createMetricCard(metric));
+  });
+
+  sp500Metrics.forEach(metric => {
+    sp500Container.appendChild(createMetricCard(metric));
+  });
+
+  buffettMetrics.forEach(metric => {
+    buffettContainer.appendChild(createMetricCard(metric));
   });
 }
 
@@ -220,32 +378,46 @@ function drawLine(canvas, series) {
   // Clear
   ctx.clearRect(0, 0, w, h);
 
-  // Padding inside canvas
-  const pad = 18;
-  const plotW = w - pad*2;
-  const plotH = h - pad*2;
+  // No padding for full bleed grid
+  const pad = 0;
+  const plotW = w;
+  const plotH = h;
 
-  // Map data to [0..1]
+  // Draw fine grid (small squares like graph paper)
+  const gridSize = 20; // Size of each grid square
+  ctx.strokeStyle = 'rgba(255,255,255,0.04)'; // Very subtle grid lines
+  ctx.lineWidth = 0.5;
+  
+  // Vertical lines
+  ctx.beginPath();
+  for (let x = 0; x <= w; x += gridSize) {
+    ctx.moveTo(x, 0);
+    ctx.lineTo(x, h);
+  }
+  ctx.stroke();
+  
+  // Horizontal lines
+  ctx.beginPath();
+  for (let y = 0; y <= h; y += gridSize) {
+    ctx.moveTo(0, y);
+    ctx.lineTo(w, y);
+  }
+  ctx.stroke();
+
+  // Map data to [0..1] with some padding for the line
+  const linePad = 40; // Padding for the actual data line
   const xs = series.map(s => new Date(s.date).getTime());
   const ys = series.map(s => s.close);
   const minX = Math.min(...xs), maxX = Math.max(...xs);
   const minY = Math.min(...ys), maxY = Math.max(...ys);
-  const xScale = (t) => ( (t - minX) / (maxX - minX || 1) ) * plotW + pad;
-  const yScale = (v) => ( 1 - (v - minY) / (maxY - minY || 1) ) * plotH + pad;
+  const xScale = (t) => ( (t - minX) / (maxX - minX || 1) ) * (plotW - linePad*2) + linePad;
+  const yScale = (v) => ( 1 - (v - minY) / (maxY - minY || 1) ) * (plotH - linePad*2) + linePad;
 
-  // Grid (light)
-  ctx.strokeStyle = 'rgba(255,255,255,0.08)';
-  ctx.lineWidth = 1;
-  ctx.beginPath();
-  for (let i=0;i<=4;i++){
-    const y = pad + (plotH/4)*i;
-    ctx.moveTo(pad, y); ctx.lineTo(pad+plotW, y);
-  }
-  ctx.stroke();
-
-  // Line
-  ctx.strokeStyle = '#5aa8ff'; // accent
-  ctx.lineWidth = 2;
+  // Draw the price line
+  ctx.strokeStyle = '#5aa8ff'; // accent color
+  ctx.lineWidth = 2.5;
+  ctx.lineCap = 'round';
+  ctx.lineJoin = 'round';
   ctx.beginPath();
   series.forEach((pt, i) => {
     const x = xScale(new Date(pt.date).getTime());
@@ -268,11 +440,17 @@ async function boot() {
   for (const ticker of tickers) {
     const data = await loadData(ticker);
     
+    // Render stock header
+    renderStockHeader(ticker, data);
+    
     // Draw chart
     const canvas = $(`#chart-${ticker.toLowerCase()}`);
     if (canvas && data.price_series) {
       drawLine(canvas, data.price_series);
     }
+    
+    // Render "At a Glance" summary
+    renderAtAGlance(ticker, data);
     
     // Render metrics
     renderMetrics(ticker, data);

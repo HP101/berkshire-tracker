@@ -2,6 +2,12 @@
   "ticker": "KO",
   "name": "Coca-Cola",
   "invested_year": 1988,
+  
+  "portfolio_weight": 0.09,
+  "portfolio_rank": 3,
+  "initial_investment": 650000000,
+  "total_shares_bought": 18571429,
+  
   "entry": { "price": 35, "date": "2016-03-31", "method": "Q1 average (mock)" },
   "current": { "price": 62, "date": "2025-11-10" },
   "benchmark": { "symbol": "SPY", "entry_price": 176, "current_price": 670 },
@@ -17,6 +23,65 @@
     { "date": "2024-01-02", "close": 58.7 },
     { "date": "2025-01-02", "close": 61.5 }
   ],
+  
+  "buffett_metrics": {
+    "roic": {
+      "value": 0.18,
+      "rating": "GOOD",
+      "description": "Solid 18% return on capital - the power of brand moats."
+    },
+    "fcf": {
+      "value": 9500000000,
+      "rating": "REALLY GOOD",
+      "description": "Generates ~$9.5B in free cash flow annually."
+    },
+    "fcf_margin": {
+      "value": 0.21,
+      "rating": "REALLY GOOD",
+      "description": "Exceptional 21% FCF margin. Classic Buffett cash cow."
+    },
+    "revenue_cagr": {
+      "value": 0.04,
+      "rating": "AVERAGE",
+      "description": "Modest 4% growth - mature business but highly profitable."
+    },
+    "net_income_cagr": {
+      "value": 0.05,
+      "rating": "AVERAGE",
+      "description": "5% profit growth. Steady but not spectacular."
+    },
+    "operating_margin_stability": {
+      "value": "Very High",
+      "rating": "REALLY GOOD",
+      "description": "Operating margins incredibly stable at 28-30% for decades."
+    },
+    "net_margin_stability": {
+      "value": "Very High",
+      "rating": "REALLY GOOD",
+      "description": "Net margins predictably around 22-24%. Textbook consistency."
+    },
+    "reinvestment_rate": {
+      "value": 0.20,
+      "rating": "GOOD",
+      "description": "Low reinvestment needs. Most cash returned to shareholders."
+    },
+    "dividend_cagr": {
+      "value": 0.03,
+      "rating": "AVERAGE",
+      "description": "3% dividend growth - consistent but slow."
+    },
+    "net_debt_ebitda": {
+      "value": 1.2,
+      "rating": "GOOD",
+      "description": "Conservative debt levels relative to cash generation."
+    },
+    "recession_performance": {
+      "value": "Excellent",
+      "rating": "REALLY GOOD",
+      "description": "Non-cyclical consumer staple. Held up remarkably well in every recession."
+    }
+  },
+  
   "financials": { "ttm": {}, "annual": [] }
 }
 

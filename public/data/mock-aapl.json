@@ -26,10 +26,59 @@
     
     "buffett_metrics": {
       "roic": {
-        "value": 0.32,
+        "value": 0.56,
+        "rating": "REALLY GOOD",
+        "description": "Exceptional capital efficiency. Apple generates 56% return on every dollar invested."
+      },
+      "fcf": {
+        "value": 99800000000,
+        "rating": "REALLY GOOD",
+        "description": "Massive free cash flow generation of ~$100B annually."
+      },
+      "fcf_margin": {
+        "value": 0.26,
+        "rating": "REALLY GOOD",
+        "description": "26% of revenue converts to free cash flow. Excellent capital-light model."
+      },
+      "revenue_cagr": {
+        "value": 0.09,
         "rating": "GOOD",
-        "trend": "up",
-        "description": "Return on Invested Capital measures how efficiently a company generates profits from its capital. Higher is better."
+        "description": "Steady 9% annual revenue growth over the past 5 years."
+      },
+      "net_income_cagr": {
+        "value": 0.12,
+        "rating": "REALLY GOOD",
+        "description": "12% profit growth outpacing revenue - margin expansion at work."
+      },
+      "operating_margin_stability": {
+        "value": "High",
+        "rating": "REALLY GOOD",
+        "description": "Operating margins consistently above 28%, showing pricing power."
+      },
+      "net_margin_stability": {
+        "value": "Very High",
+        "rating": "REALLY GOOD",
+        "description": "Net margins stable around 25%. Best-in-class profitability."
+      },
+      "reinvestment_rate": {
+        "value": 0.15,
+        "rating": "GOOD",
+        "description": "Low reinvestment needs (15%) due to capital-light services model."
+      },
+      "dividend_cagr": {
+        "value": 0.07,
+        "rating": "GOOD",
+        "description": "Dividends growing at 7% annually, though Apple prefers buybacks."
+      },
+      "net_debt_ebitda": {
+        "value": 0.4,
+        "rating": "REALLY GOOD",
+        "description": "Minimal net debt relative to earnings. Strong balance sheet."
+      },
+      "recession_performance": {
+        "value": "Resilient",
+        "rating": "REALLY GOOD",
+        "description": "Maintained growth through 2020 pandemic. Strong ecosystem lock-in."
       }
     },
     

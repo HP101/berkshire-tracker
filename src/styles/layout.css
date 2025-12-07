@@ -1,3 +1,14 @@
+/* --- Main container padding --- */
+#app {
+  padding-left: 110px;
+  padding-right: 110px;
+}
+
+/* App wrapper - no styles needed, just structural */
+.app-wrapper {
+  /* Container for all sections */
+}
+
 /* --- TRUE Stripe Press sticky sections --- */
 /* Each stock section is an independent container */
 .stock-section {
@@ -8,7 +19,7 @@
 
 /* Inner grid: sticky left, scrolling right */
 .section-inner {
-  width: min(1400px, 94vw);
+  width: min(1400px, 100%);
   margin: 0 auto;
   display: grid;
   grid-template-columns: 58fr 42fr; /* 58/42 split - larger chart pane */
@@ -52,10 +63,9 @@
   border: 1px solid var(--line);
   border-radius: var(--radius);
   box-shadow: var(--shadow);
-  padding: var(--space-4);
+  padding: 0;
   display: flex;
   flex-direction: column;
-  gap: var(--space-3);
 }
 
 .chart-title {
@@ -66,12 +76,12 @@
 }
 
 .chart-container {
-  flex: 1;
   background: var(--surface);
-  border-radius: 10px;
+  border-radius: var(--radius);
   overflow: hidden;
-  min-height: 320px;
-  max-height: 50vh;
+  height: calc(75vh - 200px); /* 75% of viewport minus space for at-a-glance */
+  min-height: 400px;
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -90,11 +100,34 @@
   margin: 0;
 }
 
+/* Metrics section grouping */
+.metrics-section {
+  margin-top: var(--space-6);
+}
+
+.metrics-section:first-of-type {
+  margin-top: var(--space-5); /* First section has less top margin */
+}
+
+.metrics-section-title {
+  font-size: var(--fs-lg);
+  font-weight: 650;
+  color: var(--text);
+  margin: 0 0 var(--space-3) 0;
+  letter-spacing: -0.01em;
+}
+
 /* Metrics container in right scrolling column */
 .metrics-container {
   display: flex;
   flex-direction: column;
   gap: var(--space-3);
+}
+
+/* Stock description paragraph */
+.stock-description {
+  margin-top: var(--space-5);
+  line-height: 1.6;
 }
 
 /* Metrics card styles in right content area */
@@ -109,7 +142,13 @@
   
 /* Responsive: stack columns on small screens */
 @media (max-width: 900px) {
+  #app {
+    padding-left: 52px;
+    padding-right: 52px;
+  }
+  
   .section-inner {
+    width: 100%;
     grid-template-columns: 1fr;
   }
   
@@ -119,7 +158,8 @@
   }
   
   .chart-container {
-    max-height: 400px;
+    height: 400px;
+    min-height: 300px;
   }
 }
   

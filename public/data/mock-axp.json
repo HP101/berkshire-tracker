@@ -2,6 +2,12 @@
   "ticker": "AXP",
   "name": "American Express",
   "invested_year": 1964,
+  
+  "portfolio_weight": 0.15,
+  "portfolio_rank": 2,
+  "initial_investment": 785000000,
+  "total_shares_bought": 98125000,
+  
   "entry": { "price": 8, "date": "2016-03-31", "method": "Q1 average (mock)" },
   "current": { "price": 60, "date": "2025-11-10" },
   "benchmark": { "symbol": "SPY", "entry_price": 176, "current_price": 670 },
@@ -17,6 +23,65 @@
     { "date": "2024-01-02", "close": 48.5 },
     { "date": "2025-01-02", "close": 58.0 }
   ],
+  
+  "buffett_metrics": {
+    "roic": {
+      "value": 0.28,
+      "rating": "GOOD",
+      "description": "Strong 28% return on invested capital for a financial services company."
+    },
+    "fcf": {
+      "value": 8200000000,
+      "rating": "REALLY GOOD",
+      "description": "Generates ~$8B in free cash flow annually."
+    },
+    "fcf_margin": {
+      "value": 0.16,
+      "rating": "GOOD",
+      "description": "16% FCF margin - solid for a credit card network."
+    },
+    "revenue_cagr": {
+      "value": 0.11,
+      "rating": "REALLY GOOD",
+      "description": "11% annual revenue growth driven by spending volumes."
+    },
+    "net_income_cagr": {
+      "value": 0.13,
+      "rating": "REALLY GOOD",
+      "description": "13% profit growth shows operating leverage."
+    },
+    "operating_margin_stability": {
+      "value": "High",
+      "rating": "GOOD",
+      "description": "Operating margins stable around 27-30%."
+    },
+    "net_margin_stability": {
+      "value": "High",
+      "rating": "GOOD",
+      "description": "Net margins consistently 16-18%. Disciplined cost management."
+    },
+    "reinvestment_rate": {
+      "value": 0.25,
+      "rating": "GOOD",
+      "description": "Moderate reinvestment in marketing and technology infrastructure."
+    },
+    "dividend_cagr": {
+      "value": 0.10,
+      "rating": "REALLY GOOD",
+      "description": "10% dividend growth reflecting confidence in business."
+    },
+    "net_debt_ebitda": {
+      "value": 1.8,
+      "rating": "GOOD",
+      "description": "Manageable leverage for a financial services company."
+    },
+    "recession_performance": {
+      "value": "Strong",
+      "rating": "GOOD",
+      "description": "Affluent customer base provides resilience in downturns."
+    }
+  },
+  
   "financials": { "ttm": {}, "annual": [] }
 }
 

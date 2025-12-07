@@ -23,6 +23,7 @@
   </header>
 
   <main id="app">
+    <div class="app-wrapper">
 
     <!-- Section 1: Apple -->
     <section class="stock-section" id="aapl" data-ticker="AAPL">
@@ -30,50 +31,42 @@
         <!-- Left: Sticky chart only -->
         <aside class="sticky-chart" aria-label="Apple chart">
           <div class="chart-card">
-            <h2 class="chart-title">AAPL</h2>
             <div class="chart-container">
-              <canvas id="chart-aapl" width="800" height="420" aria-label="Apple price chart" role="img"></canvas>
+              <canvas id="chart-aapl" width="800" height="600" aria-label="Apple price chart" role="img"></canvas>
             </div>
-            <div class="method-note">Price return only; first-purchase basis.</div>
           </div>
+          
+          <!-- At a Glance summary -->
+          <div id="glance-aapl"></div>
         </aside>
 
         <!-- Right: Scrolling content for this stock -->
         <article class="stock-content">
-          <h2 class="stock-title">Apple Inc.</h2>
-          <p class="stock-meta">First invested: 2016 · Window: price-only since entry · Method: Q1-2016 average</p>
+          <!-- Stock header rendered by JavaScript -->
+          <div id="header-aapl"></div>
 
-          <!-- Metrics rendered by JavaScript -->
-          <div id="metrics-aapl" class="metrics-container" style="margin-top: var(--space-5);"></div>
-
-          <p style="margin-top: var(--space-5); line-height: 1.6;">
-            Apple is Berkshire's largest public holding. Warren Buffett began buying in 2016 
-            and has praised Apple's ecosystem and brand loyalty.  Apple is Berkshire's largest public holding. Warren Buffett began buying in 2016 
-            and has praised Apple's ecosystem and brand loyalty.  Apple is Berkshire's largest public holding. Warren Buffett began buying in 2016 
-            and has praised Apple's ecosystem and brand loyalty.  Apple is Berkshire's largest public holding. Warren Buffett began buying in 2016 
-            and has praised Apple's ecosystem and brand loyalty. Apple is Berkshire's largest public holding. Warren Buffett began buying in 2016 
-            and has praised Apple's ecosystem and brand loyalty. Apple is Berkshire's largest public holding. Warren Buffett began buying in 2016 
-            and has praised Apple's ecosystem and brand loyalty. Apple is Berkshire's largest public holding. Warren Buffett began buying in 2016 
-            and has praised Apple's ecosystem and brand loyalty.
-
-            Apple is Berkshire's largest public holding. Warren Buffett began buying in 2016 
-            and has praised Apple's ecosystem and brand loyalty.  Apple is Berkshire's largest public holding. Warren Buffett began buying in 2016 
-            and has praised Apple's ecosystem and brand loyalty.  Apple is Berkshire's largest public holding. Warren Buffett began buying in 2016 
-            and has praised Apple's ecosystem and brand loyalty.  Apple is Berkshire's largest public holding. Warren Buffett began buying in 2016 
-            and has praised Apple's ecosystem and brand loyalty. Apple is Berkshire's largest public holding. Warren Buffett began buying in 2016 
-            and has praised Apple's ecosystem and brand loyalty. Apple is Berkshire's largest public holding. Warren Buffett began buying in 2016 
-            and has praised Apple's ecosystem and brand loyalty. Apple is Berkshire's largest public holding. Warren Buffett began buying in 2016 
-            and has praised Apple's ecosystem and brand loyalty.
-
-            Apple is Berkshire's largest public holding. Warren Buffett began buying in 2016 
-            and has praised Apple's ecosystem and brand loyalty.  Apple is Berkshire's largest public holding. Warren Buffett began buying in 2016 
-            and has praised Apple's ecosystem and brand loyalty.  Apple is Berkshire's largest public holding. Warren Buffett began buying in 2016 
-            and has praised Apple's ecosystem and brand loyalty.  Apple is Berkshire's largest public holding. Warren Buffett began buying in 2016 
-            and has praised Apple's ecosystem and brand loyalty. Apple is Berkshire's largest public holding. Warren Buffett began buying in 2016 
-            and has praised Apple's ecosystem and brand loyalty. Apple is Berkshire's largest public holding. Warren Buffett began buying in 2016 
-            and has praised Apple's ecosystem and brand loyalty. Apple is Berkshire's largest public holding. Warren Buffett began buying in 2016 
-            and has praised Apple's ecosystem and brand loyalty.
+          <p class="stock-description">
+            Berkshire finally bough their first tech stock in 2016, and it was one of their investments, despite only having a runway of 10 years. Apple became the crown jewel in Berkshire’s portfolio.
           </p>
+
+          <!-- Basic Metrics -->
+          <div class="metrics-section">
+            <h3 class="metrics-section-title">Basic Metrics</h3>
+            <div id="metrics-basic-aapl" class="metrics-container"></div>
+          </div>
+
+          <!-- S&P 500 Comparison -->
+          <div class="metrics-section">
+            <h3 class="metrics-section-title">S&P 500 Comparison</h3>
+            <div id="metrics-sp500-aapl" class="metrics-container"></div>
+          </div>
+
+          <!-- Buffett Metrics -->
+          <div class="metrics-section">
+            <h3 class="metrics-section-title">Buffett Metrics</h3>
+            <div id="metrics-buffett-aapl" class="metrics-container"></div>
+          </div>
+
         </article>
       </div>
     </section>
@@ -83,24 +76,43 @@
       <div class="section-inner">
         <aside class="sticky-chart" aria-label="American Express chart">
           <div class="chart-card">
-            <h2 class="chart-title">AXP</h2>
             <div class="chart-container">
-              <canvas id="chart-axp" width="800" height="420" aria-label="American Express price chart" role="img"></canvas>
+              <canvas id="chart-axp" width="800" height="600" aria-label="American Express price chart" role="img"></canvas>
             </div>
-            <div class="method-note">Price return only; first-purchase basis.</div>
           </div>
+          
+          <!-- At a Glance summary -->
+          <div id="glance-axp"></div>
         </aside>
 
         <article class="stock-content">
-          <h2 class="stock-title">American Express</h2>
-          <p class="stock-meta">First invested: 1964 · Financials use bank-specific metrics (v2)</p>
-          
-          <div id="metrics-axp" class="metrics-container" style="margin-top: var(--space-5);"></div>
+          <!-- Stock header rendered by JavaScript -->
+          <div id="header-axp"></div>
 
-          <p style="margin-top: var(--space-5); line-height: 1.6;">
+          <p class="stock-meta">First invested: 1964 · Financials use bank-specific metrics (v2)</p>
+
+          <p class="stock-description">
             One of Berkshire's longest-held positions, American Express represents the kind of 
             durable competitive advantage Buffett seeks.
           </p>
+
+          <!-- Basic Metrics -->
+          <div class="metrics-section">
+            <h3 class="metrics-section-title">Basic Metrics</h3>
+            <div id="metrics-basic-axp" class="metrics-container"></div>
+          </div>
+
+          <!-- S&P 500 Comparison -->
+          <div class="metrics-section">
+            <h3 class="metrics-section-title">S&P 500 Comparison</h3>
+            <div id="metrics-sp500-axp" class="metrics-container"></div>
+          </div>
+
+          <!-- Buffett Metrics -->
+          <div class="metrics-section">
+            <h3 class="metrics-section-title">Buffett Metrics</h3>
+            <div id="metrics-buffett-axp" class="metrics-container"></div>
+          </div>
         </article>
       </div>
     </section>
@@ -110,27 +122,50 @@
       <div class="section-inner">
         <aside class="sticky-chart" aria-label="Coca-Cola chart">
           <div class="chart-card">
-            <h2 class="chart-title">KO</h2>
             <div class="chart-container">
-              <canvas id="chart-ko" width="800" height="420" aria-label="Coca-Cola price chart" role="img"></canvas>
+              <canvas id="chart-ko" width="800" height="600" aria-label="Coca-Cola price chart" role="img"></canvas>
             </div>
-            <div class="method-note">Price return only; first-purchase basis.</div>
           </div>
+          
+          <!-- At a Glance summary -->
+          <div id="glance-ko"></div>
         </aside>
 
         <article class="stock-content">
-          <h2 class="stock-title">Coca-Cola</h2>
-          <p class="stock-meta">First invested: 1988 · Classic Buffett compounder</p>
-          
-          <div id="metrics-ko" class="metrics-container" style="margin-top: var(--space-5);"></div>
+          <!-- Stock header rendered by JavaScript -->
+          <div id="header-ko"></div>
 
-          <p style="margin-top: var(--space-5); line-height: 1.6;">
+          <p class="stock-meta">First invested: 1988 · Classic Buffett compounder</p>
+
+          <p class="stock-description">
             A classic Buffett investment, Coca-Cola exemplifies his preference for simple, 
             predictable businesses with global reach.
           </p>
+
+          <!-- Basic Metrics -->
+          <div class="metrics-section">
+            <h3 class="metrics-section-title">Basic Metrics</h3>
+            <div id="metrics-basic-ko" class="metrics-container"></div>
+          </div>
+
+          <!-- S&P 500 Comparison -->
+          <div class="metrics-section">
+            <h3 class="metrics-section-title">S&P 500 Comparison</h3>
+            <div id="metrics-sp500-ko" class="metrics-container"></div>
+          </div>
+
+          <!-- Buffett Metrics -->
+          <div class="metrics-section">
+            <h3 class="metrics-section-title">Buffett Metrics</h3>
+            <div id="metrics-buffett-ko" class="metrics-container"></div>
+          </div>
+
+
         </article>
       </div>
     </section>
+    
+    </div><!-- .app-wrapper -->
   </main>
 
   <!-- Footer -->

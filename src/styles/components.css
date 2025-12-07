@@ -1,3 +1,188 @@
+/* --- Stock Header Component --- */
+.stock-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: var(--space-4);
+    margin-bottom: var(--space-4);
+    padding-bottom: var(--space-4);
+    border-bottom: 1px solid var(--line);
+}
+
+.stock-header-left {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    flex: 1;
+}
+
+/* Stock logo container - a rounded square */
+.stock-logo {
+    width: 56px;
+    height: 56px;
+    border-radius: 12px;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    overflow: hidden;
+}
+
+.stock-logo img {
+    width: 32px;
+    height: 32px;
+    object-fit: contain;
+}
+
+/* Fallback for missing logos - show ticker initials */
+.stock-logo:not(:has(img)) {
+    font-size: var(--fs-lg);
+    font-weight: 700;
+    color: var(--accent);
+}
+
+/* Stock name and ticker */
+.stock-info {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+}
+
+.stock-name {
+    font-size: var(--fs-xl);
+    font-weight: 650;
+    color: var(--text);
+    margin: 0;
+    line-height: 1.2;
+}
+
+.stock-ticker {
+    font-size: var(--fs-sm);
+    color: var(--muted);
+    font-weight: 500;
+    letter-spacing: 0.5px;
+}
+
+/* Live price section */
+.stock-price-live {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: var(--space-1);
+    flex-shrink: 0;
+}
+
+.price-value {
+    font-size: var(--fs-xxl);
+    font-weight: 700;
+    color: var(--text);
+    line-height: 1;
+    font-variant-numeric: tabular-nums;
+}
+
+.price-change {
+    font-size: var(--fs-sm);
+    font-weight: 600;
+    line-height: 1;
+    font-variant-numeric: tabular-nums;
+    padding: 4px 8px;
+    border-radius: 6px;
+    background: var(--surface);
+}
+
+/* Color coding for price changes */
+.price-change.positive {
+    color: var(--up);
+}
+
+.price-change.negative {
+    color: var(--down);
+}
+
+.price-change.neutral {
+    color: var(--muted);
+}
+
+/* Responsive adjustments */
+@media (max-width: 640px) {
+    .stock-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .stock-price-live {
+        align-items: flex-start;
+        width: 100%;
+    }
+}
+
+/* --- At a Glance Card --- */
+.at-a-glance-card {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: var(--space-4);
+  margin-top: var(--space-4);
+}
+
+.at-a-glance-header {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+  margin-bottom: var(--space-4);
+  text-transform: uppercase;
+}
+
+.at-a-glance-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-4) var(--space-3);
+}
+
+.glance-metric {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.glance-label {
+  font-size: var(--fs-sm);
+  color: var(--muted);
+  font-weight: 500;
+}
+
+.glance-value {
+  font-size: var(--fs-lg);
+  font-weight: 650;
+  color: var(--text);
+  line-height: 1.2;
+}
+
+.glance-year {
+  font-size: var(--fs-xl);
+  font-variant-numeric: tabular-nums;
+}
+
+.glance-flow {
+  font-size: var(--fs-sm);
+  font-variant-numeric: tabular-nums;
+  line-height: 1.4;
+}
+
+.glance-checkmark {
+  display: flex;
+  align-items: center;
+}
+
+.glance-checkmark svg {
+  width: 32px;
+  height: 32px;
+}
+
 /* --- Tabs --- */
 .tablist {
     display: flex;
