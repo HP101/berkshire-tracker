@@ -1,0 +1,87 @@
+{
+  "ticker": "CVX",
+  "name": "Chevron",
+  "sector": "Energy",
+  "invested_year": 2020,
+  
+  "portfolio_weight": 0.05,
+  "portfolio_rank": 6,
+  "initial_investment": 480000000,
+  "total_shares_bought": 5454545,
+  
+  "entry": { "price": 88, "date": "2016-03-31", "method": "Q1 average (mock)" },
+  "current": { "price": 165, "date": "2025-11-10" },
+  "benchmark": { "symbol": "SPY", "entry_price": 176, "current_price": 670 },
+  "price_series": [
+    { "date": "2016-04-01", "close": 92 },
+    { "date": "2017-01-03", "close": 98 },
+    { "date": "2018-01-02", "close": 112 },
+    { "date": "2019-01-02", "close": 108 },
+    { "date": "2020-01-02", "close": 85 },
+    { "date": "2021-01-04", "close": 102 },
+    { "date": "2022-01-03", "close": 138 },
+    { "date": "2023-01-03", "close": 155 },
+    { "date": "2024-01-02", "close": 148 },
+    { "date": "2025-01-02", "close": 162 }
+  ],
+  
+  "buffett_metrics": {
+    "roic": {
+      "value": 0.14,
+      "rating": "GOOD",
+      "description": "14% return on capital - strong for integrated oil & gas."
+    },
+    "fcf": {
+      "value": 21000000000,
+      "rating": "REALLY GOOD",
+      "description": "Generates ~$21B in free cash flow at current oil prices."
+    },
+    "fcf_margin": {
+      "value": 0.11,
+      "rating": "GOOD",
+      "description": "11% FCF margin varies with commodity prices."
+    },
+    "revenue_cagr": {
+      "value": 0.12,
+      "rating": "REALLY GOOD",
+      "description": "12% revenue growth driven by oil price recovery."
+    },
+    "net_income_cagr": {
+      "value": 0.25,
+      "rating": "REALLY GOOD",
+      "description": "25% profit growth from operational efficiency and higher prices."
+    },
+    "operating_margin_stability": {
+      "value": "Moderate",
+      "rating": "AVERAGE",
+      "description": "Operating margins fluctuate with commodity cycles."
+    },
+    "net_margin_stability": {
+      "value": "Low",
+      "rating": "AVERAGE",
+      "description": "Net margins highly variable with oil prices, typically 8-15%."
+    },
+    "reinvestment_rate": {
+      "value": 0.35,
+      "rating": "AVERAGE",
+      "description": "Moderate capex for maintenance and growth projects."
+    },
+    "dividend_cagr": {
+      "value": 0.06,
+      "rating": "GOOD",
+      "description": "6% dividend growth - conservative payout prioritizing sustainability."
+    },
+    "net_debt_ebitda": {
+      "value": 0.3,
+      "rating": "REALLY GOOD",
+      "description": "Very low debt for energy sector. Fortress balance sheet."
+    },
+    "recession_performance": {
+      "value": "Weak",
+      "rating": "POOR",
+      "description": "Highly cyclical. Earnings decline in recessions with oil demand."
+    }
+  },
+  
+  "financials": { "ttm": {}, "annual": [] }
+}

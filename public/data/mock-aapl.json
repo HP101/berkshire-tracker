@@ -1,6 +1,7 @@
 {
     "ticker": "AAPL",
-    "name": "Apple Inc.",
+    "name": "Apple",
+    "sector": "Tech",
     "invested_year": 2016,
     
     "portfolio_weight": 0.22,

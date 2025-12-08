@@ -1,0 +1,87 @@
+{
+  "ticker": "V",
+  "name": "Visa",
+  "sector": "Financial Services",
+  "invested_year": 2011,
+  
+  "portfolio_weight": 0.07,
+  "portfolio_rank": 5,
+  "initial_investment": 625000000,
+  "total_shares_bought": 7575758,
+  
+  "entry": { "price": 82.5, "date": "2016-03-31", "method": "Q1 average (mock)" },
+  "current": { "price": 315, "date": "2025-11-10" },
+  "benchmark": { "symbol": "SPY", "entry_price": 176, "current_price": 670 },
+  "price_series": [
+    { "date": "2016-04-01", "close": 85 },
+    { "date": "2017-01-03", "close": 105 },
+    { "date": "2018-01-02", "close": 138 },
+    { "date": "2019-01-02", "close": 162 },
+    { "date": "2020-01-02", "close": 185 },
+    { "date": "2021-01-04", "close": 220 },
+    { "date": "2022-01-03", "close": 242 },
+    { "date": "2023-01-03", "close": 268 },
+    { "date": "2024-01-02", "close": 295 },
+    { "date": "2025-01-02", "close": 310 }
+  ],
+  
+  "buffett_metrics": {
+    "roic": {
+      "value": 0.38,
+      "rating": "REALLY GOOD",
+      "description": "Exceptional 38% ROIC. Network effect business with minimal capital needs."
+    },
+    "fcf": {
+      "value": 18500000000,
+      "rating": "REALLY GOOD",
+      "description": "Generates ~$18.5B in free cash flow from payment processing."
+    },
+    "fcf_margin": {
+      "value": 0.58,
+      "rating": "REALLY GOOD",
+      "description": "Outstanding 58% FCF margin. Pure tollbooth business model."
+    },
+    "revenue_cagr": {
+      "value": 0.12,
+      "rating": "REALLY GOOD",
+      "description": "12% revenue growth from volume increases and digital payments."
+    },
+    "net_income_cagr": {
+      "value": 0.14,
+      "rating": "REALLY GOOD",
+      "description": "14% profit growth with strong operating leverage."
+    },
+    "operating_margin_stability": {
+      "value": "Very High",
+      "rating": "REALLY GOOD",
+      "description": "Operating margins consistently 65-68%. Incredible pricing power."
+    },
+    "net_margin_stability": {
+      "value": "Very High",
+      "rating": "REALLY GOOD",
+      "description": "Net margins stable around 50%. Best-in-class profitability."
+    },
+    "reinvestment_rate": {
+      "value": 0.05,
+      "rating": "REALLY GOOD",
+      "description": "Minimal reinvestment needs. Software-like business model."
+    },
+    "dividend_cagr": {
+      "value": 0.17,
+      "rating": "REALLY GOOD",
+      "description": "17% dividend growth plus aggressive buybacks."
+    },
+    "net_debt_ebitda": {
+      "value": -0.2,
+      "rating": "REALLY GOOD",
+      "description": "Net cash position. Fortress balance sheet."
+    },
+    "recession_performance": {
+      "value": "Good",
+      "rating": "GOOD",
+      "description": "Spending volumes decline in recessions but network remains essential."
+    }
+  },
+  
+  "financials": { "ttm": {}, "annual": [] }
+}

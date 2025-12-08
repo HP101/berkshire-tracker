@@ -1,0 +1,87 @@
+{
+  "ticker": "OXY",
+  "name": "Occidental Petroleum",
+  "sector": "Energy",
+  "invested_year": 2019,
+  
+  "portfolio_weight": 0.13,
+  "portfolio_rank": 3,
+  "initial_investment": 1250000000,
+  "total_shares_bought": 25000000,
+  
+  "entry": { "price": 50, "date": "2016-03-31", "method": "Q1 average (mock)" },
+  "current": { "price": 52, "date": "2025-11-10" },
+  "benchmark": { "symbol": "SPY", "entry_price": 176, "current_price": 670 },
+  "price_series": [
+    { "date": "2016-04-01", "close": 52 },
+    { "date": "2017-01-03", "close": 58 },
+    { "date": "2018-01-02", "close": 65 },
+    { "date": "2019-01-02", "close": 48 },
+    { "date": "2020-01-02", "close": 22 },
+    { "date": "2021-01-04", "close": 28 },
+    { "date": "2022-01-03", "close": 48 },
+    { "date": "2023-01-03", "close": 62 },
+    { "date": "2024-01-02", "close": 58 },
+    { "date": "2025-01-02", "close": 51 }
+  ],
+  
+  "buffett_metrics": {
+    "roic": {
+      "value": 0.09,
+      "rating": "AVERAGE",
+      "description": "9% return on capital - improving after Anadarko acquisition digestion."
+    },
+    "fcf": {
+      "value": 8500000000,
+      "rating": "GOOD",
+      "description": "Generates ~$8.5B in free cash flow, focused on debt reduction."
+    },
+    "fcf_margin": {
+      "value": 0.28,
+      "rating": "REALLY GOOD",
+      "description": "28% FCF margin at current oil prices. Strong operational leverage."
+    },
+    "revenue_cagr": {
+      "value": 0.18,
+      "rating": "REALLY GOOD",
+      "description": "18% revenue growth from production increases and price recovery."
+    },
+    "net_income_cagr": {
+      "value": 0.32,
+      "rating": "REALLY GOOD",
+      "description": "32% profit growth as leverage decreases and operations improve."
+    },
+    "operating_margin_stability": {
+      "value": "Low",
+      "rating": "POOR",
+      "description": "Operating margins volatile with oil prices and high fixed costs."
+    },
+    "net_margin_stability": {
+      "value": "Very Low",
+      "rating": "POOR",
+      "description": "Net margins swing wildly from -20% to +30% with commodity cycles."
+    },
+    "reinvestment_rate": {
+      "value": 0.25,
+      "rating": "GOOD",
+      "description": "Moderate capex focused on Permian Basin assets."
+    },
+    "dividend_cagr": {
+      "value": 0.05,
+      "rating": "AVERAGE",
+      "description": "5% dividend growth - conservative while paying down Anadarko debt."
+    },
+    "net_debt_ebitda": {
+      "value": 1.2,
+      "rating": "GOOD",
+      "description": "Debt levels improving rapidly. Down from 3x post-acquisition."
+    },
+    "recession_performance": {
+      "value": "Very Weak",
+      "rating": "POOR",
+      "description": "Highly exposed to oil price crashes. 2020 was painful."
+    }
+  },
+  
+  "financials": { "ttm": {}, "annual": [] }
+}

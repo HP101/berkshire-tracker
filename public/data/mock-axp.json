@@ -1,6 +1,7 @@
 {
   "ticker": "AXP",
   "name": "American Express",
+  "sector": "Financial Services",
   "invested_year": 1964,
   
   "portfolio_weight": 0.15,

@@ -1,6 +1,7 @@
 {
   "ticker": "KO",
   "name": "Coca-Cola",
+  "sector": "Consumer Goods",
   "invested_year": 1988,
   
   "portfolio_weight": 0.09,

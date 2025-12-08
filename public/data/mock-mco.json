@@ -1,0 +1,87 @@
+{
+  "ticker": "MCO",
+  "name": "Moody's",
+  "sector": "Financial Services",
+  "invested_year": 2000,
+  
+  "portfolio_weight": 0.03,
+  "portfolio_rank": 8,
+  "initial_investment": 285000000,
+  "total_shares_bought": 2900000,
+  
+  "entry": { "price": 98, "date": "2016-03-31", "method": "Q1 average (mock)" },
+  "current": { "price": 495, "date": "2025-11-10" },
+  "benchmark": { "symbol": "SPY", "entry_price": 176, "current_price": 670 },
+  "price_series": [
+    { "date": "2016-04-01", "close": 102 },
+    { "date": "2017-01-03", "close": 135 },
+    { "date": "2018-01-02", "close": 168 },
+    { "date": "2019-01-02", "close": 195 },
+    { "date": "2020-01-02", "close": 228 },
+    { "date": "2021-01-04", "close": 298 },
+    { "date": "2022-01-03", "close": 325 },
+    { "date": "2023-01-03", "close": 378 },
+    { "date": "2024-01-02", "close": 442 },
+    { "date": "2025-01-02", "close": 488 }
+  ],
+  
+  "buffett_metrics": {
+    "roic": {
+      "value": 0.42,
+      "rating": "REALLY GOOD",
+      "description": "Exceptional 42% ROIC - classic high-quality business with minimal capital needs."
+    },
+    "fcf": {
+      "value": 2800000000,
+      "rating": "REALLY GOOD",
+      "description": "Generates ~$2.8B in free cash flow with minimal reinvestment."
+    },
+    "fcf_margin": {
+      "value": 0.45,
+      "rating": "REALLY GOOD",
+      "description": "Outstanding 45% FCF margin. Pure intellectual property business."
+    },
+    "revenue_cagr": {
+      "value": 0.10,
+      "rating": "REALLY GOOD",
+      "description": "10% annual revenue growth from credit rating and analytics."
+    },
+    "net_income_cagr": {
+      "value": 0.13,
+      "rating": "REALLY GOOD",
+      "description": "13% profit growth with strong operating leverage."
+    },
+    "operating_margin_stability": {
+      "value": "Very High",
+      "rating": "REALLY GOOD",
+      "description": "Operating margins consistently above 45%. Duopoly pricing power."
+    },
+    "net_margin_stability": {
+      "value": "Very High",
+      "rating": "REALLY GOOD",
+      "description": "Net margins stable around 35%. Minimal cost structure."
+    },
+    "reinvestment_rate": {
+      "value": 0.08,
+      "rating": "REALLY GOOD",
+      "description": "Very low reinvestment needs - most cash returned to shareholders."
+    },
+    "dividend_cagr": {
+      "value": 0.11,
+      "rating": "REALLY GOOD",
+      "description": "11% dividend growth supported by strong cash generation."
+    },
+    "net_debt_ebitda": {
+      "value": 1.5,
+      "rating": "GOOD",
+      "description": "Manageable debt levels for a cash-generative business."
+    },
+    "recession_performance": {
+      "value": "Strong",
+      "rating": "GOOD",
+      "description": "Credit rating demand increases in volatile markets. Countercyclical element."
+    }
+  },
+  
+  "financials": { "ttm": {}, "annual": [] }
+}

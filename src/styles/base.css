@@ -1,3 +1,9 @@
+/* Import Inter variable font */
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
+/* Import JetBrains Mono font */
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap');
+
 /* --- Reset / sensible defaults --- */
 * {
     box-sizing: border-box;
@@ -12,9 +18,12 @@ body {
     margin: 0;
     font-family: var(--font-sans);
     color: var(--text);
-    background: var(--bg);
+    background: transparent; /* Will be set dynamically by theme */
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    
+    /* Smooth transition for background color changes */
+    transition: background-color 0.6s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /* Media elements */
@@ -53,38 +62,47 @@ p {
     line-height: 1.5;
 }
 
-/* Header / footer chrome */
-.site-header,
+/* Footer chrome */
 .site-footer {
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding: var(--space-5);
-    border-bottom: 1px solid var(--line);
-}
-
-.site-footer {
     border-top: 1px solid var(--line);
-    border-bottom: none;
 }
 
-.brand {
-    display: flex;
+/* Logo styling */
+.logo {
+    position: fixed;
+    
+    z-index: 100;
+    display: inline-flex;
+    padding: 4px 8px;
+    justify-content: center;
     align-items: center;
-    gap: 10px;
-    font-size: var(--fs-lg);
+    gap: 8px;
+    background: transparent; /* Will be set by theme */
+    /* NO transition - instant color change */
 }
 
-.brand .dot {
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    background: var(--accent);
+.logo-text {
+    color: #000; /* Will be overridden by theme */
+    text-align: center;
+    font-family: "Times New Roman", Times, serif;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 550;
+    line-height: 115%; /* 17.25px */
+    letter-spacing: -0.3px;
+    /* NO transition - instant color change */
 }
 
-.asof {
-    color: var(--muted);
-    font-size: var(--fs-sm);
+.logo-text-bold {
+    font-weight: 700;
+}
+
+.logo-text-italic {
+    font-style: italic;
 }
 
 .footer-nav {

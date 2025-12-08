@@ -1,31 +1,21 @@
 /* --- Stock Header Component --- */
 .stock-header {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: var(--space-4);
-    margin-bottom: var(--space-4);
-    padding-bottom: var(--space-4);
-    border-bottom: 1px solid var(--line);
-}
-
-.stock-header-left {
-    display: flex;
-    align-items: center;
-    gap: var(--space-3);
-    flex: 1;
+    flex-direction: column;
+    gap: 4px;
+    border-bottom: 1px solid var(--theme-border);
 }
 
 /* Stock logo container - a rounded square */
 .stock-logo {
-    width: 56px;
-    height: 56px;
+    width: 40px;
+    height: 40px;
     border-radius: 12px;
-    background: var(--surface);
-    border: 1px solid var(--line);
+    background: var(--theme-surface);
+    border: 1px solid var(--theme-border);
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
     flex-shrink: 0;
     overflow: hidden;
 }
@@ -40,33 +30,57 @@
 .stock-logo:not(:has(img)) {
     font-size: var(--fs-lg);
     font-weight: 700;
-    color: var(--accent);
+    color: var(--theme-accent);
 }
 
-/* Stock name and ticker */
-.stock-info {
+/* Content container - horizontal layout */
+.stock-header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 28px;
+}
+
+/* Left column: name/ticker + sector */
+.stock-info-column {
     display: flex;
     flex-direction: column;
-    gap: var(--space-1);
+    gap: 4px;
+    flex: 1;
+}
+
+/* Name + Ticker row (horizontal) */
+.stock-name-ticker {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
 }
 
 .stock-name {
-    font-size: var(--fs-xl);
-    font-weight: 650;
-    color: var(--text);
+    font-size: 28px;
+    font-weight: 510;
+    color: var(--theme-text);
     margin: 0;
     line-height: 1.2;
+    letter-spacing: -2%
 }
 
 .stock-ticker {
-    font-size: var(--fs-sm);
-    color: var(--muted);
-    font-weight: 500;
-    letter-spacing: 0.5px;
+    font-size: 16px;
+    color: var(--theme-text-muted);
+    font-weight: 450;
+    letter-spacing: -2%
 }
 
-/* Live price section */
-.stock-price-live {
+/* Sector */
+.stock-sector {
+    font-size: 16px;
+    color: var(--theme-text-muted);
+    font-weight: 400;
+}
+
+/* Right column: Current price */
+.stock-price-column {
     display: flex;
     flex-direction: column;
     align-items: flex-end;
@@ -74,103 +88,135 @@
     flex-shrink: 0;
 }
 
+.price-label {
+    font-size: 14px;
+    color: var(--theme-text-muted);
+    font-weight: 400;
+    letter-spacing: -2%
+}
+
 .price-value {
-    font-size: var(--fs-xxl);
-    font-weight: 700;
-    color: var(--text);
+    font-size: 18px;
+    font-weight: 400;
+    color: var(--theme-text);
     line-height: 1;
     font-variant-numeric: tabular-nums;
-}
-
-.price-change {
-    font-size: var(--fs-sm);
-    font-weight: 600;
-    line-height: 1;
-    font-variant-numeric: tabular-nums;
-    padding: 4px 8px;
-    border-radius: 6px;
-    background: var(--surface);
-}
-
-/* Color coding for price changes */
-.price-change.positive {
-    color: var(--up);
-}
-
-.price-change.negative {
-    color: var(--down);
-}
-
-.price-change.neutral {
-    color: var(--muted);
 }
 
 /* Responsive adjustments */
-@media (max-width: 640px) {
+@media (max-width: 900px) {
     .stock-header {
-        flex-direction: column;
-        align-items: flex-start;
+        gap: var(--space-2);
+        padding-bottom: var(--space-3);
     }
     
-    .stock-price-live {
+    .stock-name {
+        font-size: 24px;
+    }
+    
+    .stock-ticker {
+        font-size: 14px;
+    }
+    
+    .stock-sector {
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 640px) {
+    .stock-header {
+        gap: var(--space-2);
+        padding-bottom: var(--space-2);
+    }
+    
+    .stock-header-content {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+    }
+    
+    .stock-name {
+        font-size: 22px;
+    }
+    
+    .stock-ticker {
+        font-size: 13px;
+    }
+    
+    .stock-sector {
+        font-size: 13px;
+    }
+    
+    .stock-price-column {
         align-items: flex-start;
         width: 100%;
+    }
+    
+    .price-label {
+        font-size: 13px;
+    }
+    
+    .price-value {
+        font-size: 17px;
     }
 }
 
 /* --- At a Glance Card --- */
 .at-a-glance-card {
-  background: var(--card);
-  border: 1px solid var(--line);
-  border-radius: var(--radius);
-  box-shadow: var(--shadow);
+  background: var(--theme-card-bg);
   padding: var(--space-4);
   margin-top: var(--space-4);
 }
 
 .at-a-glance-header {
-  font-size: 11px;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 12px;
   font-weight: 700;
-  letter-spacing: 0.08em;
-  color: var(--muted);
-  margin-bottom: var(--space-4);
+  letter-spacing: -2%;
+  color: var(--theme-text-muted);
+  margin-bottom: 12px;
   text-transform: uppercase;
+  
 }
 
 .at-a-glance-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: var(--space-4) var(--space-3);
+  display: flex;
+  flex-wrap: wrap;
+  row-gap: var(--space-5);
 }
 
 .glance-metric {
   display: flex;
   flex-direction: column;
-  gap: var(--space-2);
+  gap: 6px;
+  width: 50%;
 }
 
 .glance-label {
-  font-size: var(--fs-sm);
-  color: var(--muted);
-  font-weight: 500;
+  font-size: 13px;
+  color: var(--theme-text);
+  font-weight: 400;
 }
 
 .glance-value {
   font-size: var(--fs-lg);
   font-weight: 650;
-  color: var(--text);
+  color: var(--theme-text);
   line-height: 1.2;
 }
 
 .glance-year {
-  font-size: var(--fs-xl);
+  font-size: 20px;
+  font-weight: 510;
   font-variant-numeric: tabular-nums;
 }
 
 .glance-flow {
-  font-size: var(--fs-sm);
+  font-size: 20px;
+  font-weight: 510;
+  color: var(--theme-text);
   font-variant-numeric: tabular-nums;
-  line-height: 1.4;
+  line-height: 1.2;
 }
 
 .glance-checkmark {
@@ -179,15 +225,22 @@
 }
 
 .glance-checkmark svg {
-  width: 32px;
-  height: 32px;
+  width: 28px;
+  height: 28px;
+}
+
+/* Responsive: Hide on smaller screens to simplify mobile experience */
+@media (max-width: 900px) {
+  .at-a-glance-card {
+    display: none;
+  }
 }
 
 /* --- Tabs --- */
 .tablist {
     display: flex;
     gap: var(--space-2);
-    border-bottom: 1px solid var(--line);
+    border-bottom: 1px solid var(--theme-border);
     margin-bottom: var(--space-4);
 }
 
@@ -195,7 +248,7 @@
     appearance: none;
     border: 0;
     background: transparent;
-    color: var(--muted);
+    color: var(--theme-text-muted);
     padding: var(--space-2) var(--space-3);
     border-bottom: 2px solid transparent;
     font-size: var(--fs-md);
@@ -204,8 +257,8 @@
 }
 
 [role="tab"][aria-selected="true"] {
-    color: var(--text);
-    border-bottom-color: var(--accent);
+    color: var(--theme-text);
+    border-bottom-color: var(--theme-accent);
 }
 
 [role="tabpanel"] {

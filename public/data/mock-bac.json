@@ -1,0 +1,87 @@
+{
+  "ticker": "BAC",
+  "name": "Bank of America",
+  "sector": "Banking",
+  "invested_year": 2007,
+  
+  "portfolio_weight": 0.11,
+  "portfolio_rank": 4,
+  "initial_investment": 920000000,
+  "total_shares_bought": 82142857,
+  
+  "entry": { "price": 11.2, "date": "2016-03-31", "method": "Q1 average (mock)" },
+  "current": { "price": 45, "date": "2025-11-10" },
+  "benchmark": { "symbol": "SPY", "entry_price": 176, "current_price": 670 },
+  "price_series": [
+    { "date": "2016-04-01", "close": 11.8 },
+    { "date": "2017-01-03", "close": 15.2 },
+    { "date": "2018-01-02", "close": 18.6 },
+    { "date": "2019-01-02", "close": 22.1 },
+    { "date": "2020-01-02", "close": 24.8 },
+    { "date": "2021-01-04", "close": 30.5 },
+    { "date": "2022-01-03", "close": 35.2 },
+    { "date": "2023-01-03", "close": 38.9 },
+    { "date": "2024-01-02", "close": 42.3 },
+    { "date": "2025-01-02", "close": 44.5 }
+  ],
+  
+  "buffett_metrics": {
+    "roic": {
+      "value": 0.12,
+      "rating": "GOOD",
+      "description": "Solid 12% return on invested capital for a large commercial bank."
+    },
+    "fcf": {
+      "value": 28000000000,
+      "rating": "REALLY GOOD",
+      "description": "Generates ~$28B in free cash flow annually from banking operations."
+    },
+    "fcf_margin": {
+      "value": 0.28,
+      "rating": "REALLY GOOD",
+      "description": "28% FCF margin shows efficient capital deployment."
+    },
+    "revenue_cagr": {
+      "value": 0.08,
+      "rating": "GOOD",
+      "description": "8% annual revenue growth driven by rising interest rates."
+    },
+    "net_income_cagr": {
+      "value": 0.15,
+      "rating": "REALLY GOOD",
+      "description": "15% profit growth showing strong operating leverage."
+    },
+    "operating_margin_stability": {
+      "value": "Moderate",
+      "rating": "AVERAGE",
+      "description": "Operating margins fluctuate with interest rate cycles."
+    },
+    "net_margin_stability": {
+      "value": "Moderate",
+      "rating": "AVERAGE",
+      "description": "Net margins around 25-30%, varies with economic conditions."
+    },
+    "reinvestment_rate": {
+      "value": 0.10,
+      "rating": "REALLY GOOD",
+      "description": "Low reinvestment needs for a mature banking franchise."
+    },
+    "dividend_cagr": {
+      "value": 0.12,
+      "rating": "REALLY GOOD",
+      "description": "12% dividend growth reflecting strong capital generation."
+    },
+    "net_debt_ebitda": {
+      "value": 0.8,
+      "rating": "REALLY GOOD",
+      "description": "Strong balance sheet post-financial crisis cleanup."
+    },
+    "recession_performance": {
+      "value": "Moderate",
+      "rating": "AVERAGE",
+      "description": "Banking sector exposed to credit cycles, but BAC is well-capitalized."
+    }
+  },
+  
+  "financials": { "ttm": {}, "annual": [] }
+}

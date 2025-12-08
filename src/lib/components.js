@@ -4,18 +4,6 @@
    ========================================================= */
 
 /**
- * Label color mapping
- * Maps rating labels to background and text colors
- */
-const labelColors = {
-  'BAD': { bg: '#fee2e2', text: '#991b1b' },
-  'AVERAGE': { bg: '#fef3c7', text: '#92400e' },
-  'GOOD': { bg: '#d1fae5', text: '#065f46' },
-  'HIGH': { bg: '#dbeafe', text: '#1e40af' },
-  'REALLY GOOD': { bg: '#86efac', text: '#064e3b' }
-};
-
-/**
  * Create a metric card component
  * 
  * Creates a DOM element for displaying a single metric with:
@@ -68,11 +56,6 @@ export function createMetricCard({ name, value, label, description }) {
     labelEl.className = 'metric-label';
     labelEl.textContent = label;
     
-    // Apply color based on label type
-    const colors = labelColors[label.toUpperCase()] || labelColors['GOOD'];
-    labelEl.style.backgroundColor = colors.bg;
-    labelEl.style.color = colors.text;
-    
     left.appendChild(labelEl);
   }
   
@@ -114,7 +97,41 @@ export function createMetricCard({ name, value, label, description }) {
   if (description) {
     const descEl = document.createElement('div');
     descEl.className = 'metric-description';
-    descEl.textContent = description;
+    
+    // Create SVG icon
+    const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+    svg.setAttribute('width', '11');
+    svg.setAttribute('height', '14');
+    svg.setAttribute('viewBox', '0 0 11 14');
+    svg.setAttribute('fill', 'none');
+    svg.style.flexShrink = '0';
+    svg.style.marginRight = '8px';
+    
+    const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+    line.setAttribute('x1', '0.5');
+    line.setAttribute('y1', '-2.18557e-08');
+    line.setAttribute('x2', '0.5');
+    line.setAttribute('y2', '10');
+    line.setAttribute('stroke', 'var(--theme-text-muted)');
+    line.setAttribute('stroke-width', '2.5px');
+    
+    const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+    path.setAttribute('d', 'M10.3536 10.3536C10.5488 10.1583 10.5488 9.84171 10.3536 9.64645L7.17159 6.46447C6.97633 6.2692 6.65974 6.2692 6.46448 6.46447C6.26922 6.65973 6.26922 6.97631 6.46448 7.17157L9.29291 10L6.46448 12.8284C6.26922 13.0237 6.26922 13.3403 6.46448 13.5355C6.65974 13.7308 6.97633 13.7308 7.17159 13.5355L10.3536 10.3536ZM1.52588e-05 10V10.5H10V10V9.5H1.52588e-05V10Z');
+    path.setAttribute('fill', 'var(--theme-text-muted)');
+    path.setAttribute('stroke', 'var(--theme-text-muted)');
+    path.setAttribute('stroke-width', '0.5px');
+    path.setAttribute('stroke-linejoin', 'round');
+    
+    svg.appendChild(line);
+    svg.appendChild(path);
+    
+    // Create text content
+    const textContent = document.createElement('p');
+    textContent.textContent = description;
+    textContent.style.margin = '0';
+    
+    descEl.appendChild(svg);
+    descEl.appendChild(textContent);
     card.appendChild(descEl);
     
     // Add click handler to toggle accordion
@@ -136,36 +153,31 @@ export function createMetricCard({ name, value, label, description }) {
  * Create a stock header component
  * 
  * Creates a header section displaying:
- * - Company logo
- * - Company name and ticker
- * - Current live price and change
+ * - Company logo (SVG)
+ * - Company name and ticker (horizontal)
+ * - Sector
+ * - Current live price
  * 
  * @param {Object} config - Configuration object
  * @param {string} config.ticker - Stock ticker symbol (e.g., "AAPL")
- * @param {string} config.name - Company name (e.g., "Apple Inc.")
+ * @param {string} config.name - Company name (e.g., "Apple")
+ * @param {string} config.sector - Company sector (e.g., "Tech")
  * @param {number} config.currentPrice - Current stock price
- * @param {number} config.priceChange - Price change amount
- * @param {number} config.priceChangePercent - Price change percentage
  * @returns {HTMLElement} The stock header DOM element
  * 
  * @example
  * const header = createStockHeader({
  *   ticker: "AAPL",
- *   name: "Apple Inc.",
- *   currentPrice: 180.50,
- *   priceChange: 2.50,
- *   priceChangePercent: 1.4
+ *   name: "Apple",
+ *   sector: "Tech",
+ *   currentPrice: 268.47
  * });
  * container.appendChild(header);
  */
-export function createStockHeader({ ticker, name, currentPrice, priceChange, priceChangePercent }) {
-  // Create main container
+export function createStockHeader({ ticker, name, sector = '', currentPrice }) {
+  // Main container (flex-column)
   const header = document.createElement('div');
   header.className = 'stock-header';
-  
-  // Left side: logo + info
-  const left = document.createElement('div');
-  left.className = 'stock-header-left';
   
   // Logo container
   const logoDiv = document.createElement('div');
@@ -173,18 +185,35 @@ export function createStockHeader({ ticker, name, currentPrice, priceChange, pri
   logoDiv.setAttribute('data-ticker', ticker);
   
   const logoImg = document.createElement('img');
-  logoImg.src = `/assets/logos/${ticker.toLowerCase()}.svg`;
+  const tickerLower = ticker.toLowerCase();
+  
+  // Try PNG first, then fallback to SVG, then to initials
+  logoImg.src = `/public/assets/logos/${tickerLower}.png`;
   logoImg.alt = `${name} logo`;
+  
   logoImg.onerror = function() {
-    // Fallback: show ticker initials if logo fails to load
-    this.style.display = 'none';
-    logoDiv.textContent = ticker.charAt(0);
+    // First fallback: try SVG
+    if (this.src.endsWith('.png')) {
+      this.src = `/public/assets/logos/${tickerLower}.svg`;
+    } else {
+      // Second fallback: show ticker initials if both PNG and SVG fail
+      this.style.display = 'none';
+      logoDiv.textContent = ticker.charAt(0);
+    }
   };
   logoDiv.appendChild(logoImg);
   
-  // Stock info (name + ticker)
-  const infoDiv = document.createElement('div');
-  infoDiv.className = 'stock-info';
+  // Content container (horizontal flex)
+  const contentDiv = document.createElement('div');
+  contentDiv.className = 'stock-header-content';
+  
+  // Left column: name/ticker + sector
+  const infoColumn = document.createElement('div');
+  infoColumn.className = 'stock-info-column';
+  
+  // Name + Ticker row (horizontal flex)
+  const nameTickerRow = document.createElement('div');
+  nameTickerRow.className = 'stock-name-ticker';
   
   const nameEl = document.createElement('h2');
   nameEl.className = 'stock-name';
@@ -194,43 +223,40 @@ export function createStockHeader({ ticker, name, currentPrice, priceChange, pri
   tickerEl.className = 'stock-ticker';
   tickerEl.textContent = ticker;
   
-  infoDiv.appendChild(nameEl);
-  infoDiv.appendChild(tickerEl);
+  nameTickerRow.appendChild(nameEl);
+  nameTickerRow.appendChild(tickerEl);
   
-  left.appendChild(logoDiv);
-  left.appendChild(infoDiv);
+  // Sector
+  const sectorEl = document.createElement('div');
+  sectorEl.className = 'stock-sector';
+  sectorEl.textContent = sector;
   
-  // Right side: price data
-  const priceDiv = document.createElement('div');
-  priceDiv.className = 'stock-price-live';
+  infoColumn.appendChild(nameTickerRow);
+  infoColumn.appendChild(sectorEl);
+  
+  // Right side: Current price
+  const priceColumn = document.createElement('div');
+  priceColumn.className = 'stock-price-column';
+  
+  const priceLabel = document.createElement('div');
+  priceLabel.className = 'price-label';
+  priceLabel.textContent = 'Current Price';
   
   const priceValue = document.createElement('div');
   priceValue.className = 'price-value';
   priceValue.setAttribute('data-price', ticker);
   priceValue.textContent = currentPrice ? `$${currentPrice.toFixed(2)}` : '—';
   
-  const priceChangeEl = document.createElement('div');
-  priceChangeEl.className = 'price-change';
-  priceChangeEl.setAttribute('data-change', ticker);
+  priceColumn.appendChild(priceLabel);
+  priceColumn.appendChild(priceValue);
   
-  // Determine color class based on change
-  if (priceChange > 0) {
-    priceChangeEl.classList.add('positive');
-    priceChangeEl.textContent = `+$${priceChange.toFixed(2)} (+${priceChangePercent.toFixed(2)}%)`;
-  } else if (priceChange < 0) {
-    priceChangeEl.classList.add('negative');
-    priceChangeEl.textContent = `$${priceChange.toFixed(2)} (${priceChangePercent.toFixed(2)}%)`;
-  } else {
-    priceChangeEl.classList.add('neutral');
-    priceChangeEl.textContent = '—';
-  }
-  
-  priceDiv.appendChild(priceValue);
-  priceDiv.appendChild(priceChangeEl);
+  // Assemble content
+  contentDiv.appendChild(infoColumn);
+  contentDiv.appendChild(priceColumn);
   
   // Assemble header
-  header.appendChild(left);
-  header.appendChild(priceDiv);
+  header.appendChild(logoDiv);
+  header.appendChild(contentDiv);
   
   return header;
 }
@@ -329,7 +355,7 @@ export function createAtAGlance({ startYear, invested, returned, beatSP500, sp50
     circle.setAttribute('cx', '16');
     circle.setAttribute('cy', '16');
     circle.setAttribute('r', '14');
-    circle.setAttribute('fill', 'var(--accent)');
+    circle.setAttribute('fill', 'var(--theme-checkmark)');
     
     const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
     path.setAttribute('d', 'M10 16L14 20L22 12');
@@ -350,11 +376,11 @@ export function createAtAGlance({ startYear, invested, returned, beatSP500, sp50
   
   // By how much? (vs S&P 500)
   const differenceSection = document.createElement('div');
-  differenceSection.className = 'glance-metric';
+  differenceSection.className = 'glance-metric glance-metric-wide';
   differenceSection.innerHTML = `
-    <div class="glance-label">By how much?</div>
+    <div class="glance-label">If invested in S&P 500</div>
     <div class="glance-value glance-flow">
-      ${formatBigUSD(sp500Hypothetical)} → ${beatSP500 ? '+' : ''}${formatBigUSD(sp500Difference)}
+      ${formatBigUSD(sp500Hypothetical)}
     </div>
   `;
   
@@ -368,3 +394,266 @@ export function createAtAGlance({ startYear, invested, returned, beatSP500, sp50
   
   return card;
 }
+
+/**
+ * Create a vertical section navigation component
+ * 
+ * Creates a fixed vertical navigation bar that:
+ * - Shows indicators for each section
+ * - Highlights the currently visible section
+ * - Allows clicking to jump to sections
+ * - Appears on large screens only
+ * 
+ * @param {Array} sections - Array of section objects
+ * @param {string} sections[].id - Section DOM id (e.g., "aapl")
+ * @param {string} sections[].label - Display label (e.g., "AAPL")
+ * @returns {HTMLElement} The vertical nav DOM element
+ * 
+ * @example
+ * const nav = createVerticalNav([
+ *   { id: 'aapl', label: 'AAPL' },
+ *   { id: 'axp', label: 'AXP' },
+ *   { id: 'ko', label: 'KO' }
+ * ]);
+ * document.body.appendChild(nav);
+ */
+export function createVerticalNav(sections) {
+  // Main nav container
+  const nav = document.createElement('nav');
+  nav.className = 'vertical-nav';
+  nav.setAttribute('aria-label', 'Section navigation');
+  
+  // Create a list
+  const list = document.createElement('ul');
+  list.className = 'vertical-nav-list';
+  
+  // Create nav items for each section
+  sections.forEach((section, index) => {
+    const item = document.createElement('li');
+    item.className = 'vertical-nav-item';
+    
+    const link = document.createElement('a');
+    link.href = `#${section.id}`;
+    link.className = 'vertical-nav-link';
+    link.setAttribute('data-section', section.id);
+    link.setAttribute('aria-label', `Go to ${section.label}`);
+    
+    // Create logo container instead of dot
+    const logoContainer = document.createElement('span');
+    logoContainer.className = 'vertical-nav-logo';
+    
+    // Special case for Bank of America - use letter "B"
+    if (section.id === 'bac') {
+      logoContainer.textContent = 'B';
+      logoContainer.classList.add('vertical-nav-logo--text');
+    } else {
+      // Try to load logo image (PNG first, then SVG)
+      const logoImg = document.createElement('img');
+      logoImg.src = `/public/assets/logos/${section.id}.png`;
+      logoImg.alt = section.label;
+      
+      logoImg.onerror = function() {
+        // First fallback: try SVG
+        if (this.src.endsWith('.png')) {
+          this.src = `/public/assets/logos/${section.id}.svg`;
+        } else {
+          // Second fallback: show ticker initials
+          this.style.display = 'none';
+          logoContainer.textContent = section.label.charAt(0);
+          logoContainer.classList.add('vertical-nav-logo--text');
+        }
+      };
+      
+      logoContainer.appendChild(logoImg);
+    }
+    
+    // Create the label (visible on hover)
+    const label = document.createElement('span');
+    label.className = 'vertical-nav-label';
+    label.textContent = section.label;
+    
+    link.appendChild(logoContainer);
+    link.appendChild(label);
+    item.appendChild(link);
+    list.appendChild(item);
+    
+    // Smooth scroll to section on click
+    link.addEventListener('click', (e) => {
+      e.preventDefault();
+      const targetSection = document.getElementById(section.id);
+      if (targetSection) {
+        targetSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+  });
+  
+  nav.appendChild(list);
+  
+  // Set up intersection observer to track active section
+  setupScrollSpy(sections);
+  
+  return nav;
+}
+
+/**
+ * Set up scroll spy to highlight active section in vertical nav
+ * Uses Intersection Observer API to detect which section is in view
+ * 
+ * @param {Array} sections - Array of section objects with id property
+ */
+function setupScrollSpy(sections) {
+  const observerOptions = {
+    root: null,
+    rootMargin: '-50% 0px -50% 0px', // Trigger when section crosses middle of viewport
+    threshold: 0
+  };
+  
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        // Remove active class from all links
+        document.querySelectorAll('.vertical-nav-link').forEach(link => {
+          link.classList.remove('active');
+        });
+        
+        // Add active class to current section's link
+        const activeLink = document.querySelector(`.vertical-nav-link[data-section="${entry.target.id}"]`);
+        if (activeLink) {
+          activeLink.classList.add('active');
+        }
+      }
+    });
+  }, observerOptions);
+  
+  // Observe each section
+  sections.forEach(section => {
+    const element = document.getElementById(section.id);
+    if (element) {
+      observer.observe(element);
+    }
+  });
+}
+
+/**
+ * Create mobile navigation arrows
+ * 
+ * Creates fixed up/down arrow buttons for mobile screens that:
+ * - Navigate between sections
+ * - Meet 44px minimum touch target size
+ * - Show/hide based on current position
+ * - Hidden on large screens (where vertical nav shows)
+ * 
+ * @param {Array} sections - Array of section objects
+ * @returns {HTMLElement} Container with both arrows
+ * 
+ * @example
+ * const mobileNav = createMobileNav([
+ *   { id: 'aapl', label: 'AAPL' },
+ *   { id: 'axp', label: 'AXP' },
+ *   { id: 'ko', label: 'KO' }
+ * ]);
+ * document.body.appendChild(mobileNav);
+ */
+export function createMobileNav(sections) {
+  // Container for both arrows
+  const container = document.createElement('div');
+  container.className = 'mobile-nav';
+  
+  // Up arrow button
+  const upButton = document.createElement('button');
+  upButton.className = 'mobile-nav-arrow mobile-nav-up';
+  upButton.setAttribute('aria-label', 'Previous section');
+  upButton.innerHTML = `
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M18 15L12 9L6 15" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  `;
+  
+  // Down arrow button
+  const downButton = document.createElement('button');
+  downButton.className = 'mobile-nav-arrow mobile-nav-down';
+  downButton.setAttribute('aria-label', 'Next section');
+  downButton.innerHTML = `
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  `;
+  
+  container.appendChild(upButton);
+  container.appendChild(downButton);
+  
+  // Track current section index
+  let currentIndex = 0;
+  
+  // Function to update arrow visibility
+  function updateArrowStates() {
+    // Hide up arrow if at first section
+    if (currentIndex === 0) {
+      upButton.style.opacity = '0.3';
+      upButton.style.pointerEvents = 'none';
+    } else {
+      upButton.style.opacity = '1';
+      upButton.style.pointerEvents = 'auto';
+    }
+    
+    // Hide down arrow if at last section
+    if (currentIndex === sections.length - 1) {
+      downButton.style.opacity = '0.3';
+      downButton.style.pointerEvents = 'none';
+    } else {
+      downButton.style.opacity = '1';
+      downButton.style.pointerEvents = 'auto';
+    }
+  }
+  
+  // Set up observer to track current section
+  const observerOptions = {
+    root: null,
+    rootMargin: '-50% 0px -50% 0px',
+    threshold: 0
+  };
+  
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        // Find index of current section
+        currentIndex = sections.findIndex(s => s.id === entry.target.id);
+        updateArrowStates();
+      }
+    });
+  }, observerOptions);
+  
+  // Observe each section
+  sections.forEach(section => {
+    const element = document.getElementById(section.id);
+    if (element) {
+      observer.observe(element);
+    }
+  });
+  
+  // Up button click handler
+  upButton.addEventListener('click', () => {
+    if (currentIndex > 0) {
+      const prevSection = document.getElementById(sections[currentIndex - 1].id);
+      if (prevSection) {
+        prevSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }
+  });
+  
+  // Down button click handler
+  downButton.addEventListener('click', () => {
+    if (currentIndex < sections.length - 1) {
+      const nextSection = document.getElementById(sections[currentIndex + 1].id);
+      if (nextSection) {
+        nextSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }
+  });
+  
+  // Initialize arrow states
+  updateArrowStates();
+  
+  return container;
+}
+

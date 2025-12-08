@@ -1,0 +1,87 @@
+{
+  "ticker": "KHC",
+  "name": "Kraft Heinz",
+  "sector": "Consumer Goods",
+  "invested_year": 2015,
+  
+  "portfolio_weight": 0.04,
+  "portfolio_rank": 7,
+  "initial_investment": 380000000,
+  "total_shares_bought": 11176471,
+  
+  "entry": { "price": 34, "date": "2016-03-31", "method": "Q1 average (mock)" },
+  "current": { "price": 31, "date": "2025-11-10" },
+  "benchmark": { "symbol": "SPY", "entry_price": 176, "current_price": 670 },
+  "price_series": [
+    { "date": "2016-04-01", "close": 36 },
+    { "date": "2017-01-03", "close": 38 },
+    { "date": "2018-01-02", "close": 42 },
+    { "date": "2019-01-02", "close": 28 },
+    { "date": "2020-01-02", "close": 26 },
+    { "date": "2021-01-04", "close": 32 },
+    { "date": "2022-01-03", "close": 35 },
+    { "date": "2023-01-03", "close": 38 },
+    { "date": "2024-01-02", "close": 33 },
+    { "date": "2025-01-02", "close": 30 }
+  ],
+  
+  "buffett_metrics": {
+    "roic": {
+      "value": 0.07,
+      "rating": "AVERAGE",
+      "description": "7% return on capital - below expectations for branded consumer goods."
+    },
+    "fcf": {
+      "value": 3200000000,
+      "rating": "GOOD",
+      "description": "Generates ~$3.2B in free cash flow despite brand challenges."
+    },
+    "fcf_margin": {
+      "value": 0.12,
+      "rating": "GOOD",
+      "description": "12% FCF margin - decent but not stellar for food brands."
+    },
+    "revenue_cagr": {
+      "value": -0.02,
+      "rating": "POOR",
+      "description": "Slight revenue decline as legacy brands face competition."
+    },
+    "net_income_cagr": {
+      "value": 0.01,
+      "rating": "POOR",
+      "description": "Flat profit growth. Turnaround taking longer than expected."
+    },
+    "operating_margin_stability": {
+      "value": "Moderate",
+      "rating": "AVERAGE",
+      "description": "Operating margins around 20-23%, under pressure from costs."
+    },
+    "net_margin_stability": {
+      "value": "Low",
+      "rating": "POOR",
+      "description": "Net margins erratic 5-15% due to restructuring charges."
+    },
+    "reinvestment_rate": {
+      "value": 0.15,
+      "rating": "GOOD",
+      "description": "Low capex needs but investing in brand revitalization."
+    },
+    "dividend_cagr": {
+      "value": 0.00,
+      "rating": "POOR",
+      "description": "Dividend cut and held flat. Preserving cash for turnaround."
+    },
+    "net_debt_ebitda": {
+      "value": 3.8,
+      "rating": "AVERAGE",
+      "description": "High debt load from merger, but actively paying down."
+    },
+    "recession_performance": {
+      "value": "Good",
+      "rating": "GOOD",
+      "description": "Consumer staples hold up well. Pantry-loading benefits."
+    }
+  },
+  
+  "financials": { "ttm": {}, "annual": [] }
+}

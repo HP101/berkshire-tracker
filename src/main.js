@@ -15,7 +15,7 @@ import {
   calculateYearsInvested
 } from './lib/metrics.js';
 
-import { createMetricCard, createStockHeader, createAtAGlance } from './lib/components.js';
+import { createMetricCard, createStockHeader, createAtAGlance, createVerticalNav, createMobileNav } from './lib/components.js';
 
 /* ---------- DOM references ---------- */
 const $ = (sel, root = document) => root.querySelector(sel);
@@ -31,6 +31,13 @@ const DATA_INDEX = {
   AAPL: '/public/data/mock-aapl.json',
   AXP:  '/public/data/mock-axp.json',
   KO:   '/public/data/mock-ko.json',
+  BAC:  '/public/data/mock-bac.json',
+  MCO:  '/public/data/mock-mco.json',
+  CVX:  '/public/data/mock-cvx.json',
+  OXY:  '/public/data/mock-oxy.json',
+  KHC:  '/public/data/mock-khc.json',
+  KR:   '/public/data/mock-kr.json',
+  V:    '/public/data/mock-v.json',
 };
 
 /** Fetch & cache one ticker’s JSON. Generates a graceful placeholder if missing. */
@@ -150,17 +157,12 @@ function renderStockHeader(ticker, data) {
   // Clear container
   container.innerHTML = '';
 
-  // Calculate price change (mock for now - we'll use live data later)
-  const priceChange = data.current.price - data.entry.price;
-  const priceChangePercent = (priceChange / data.entry.price) * 100;
-
   // Create and append header
   const header = createStockHeader({
     ticker: ticker,
     name: data.name,
+    sector: data.sector || '',
     currentPrice: data.current.price,
-    priceChange: priceChange,
-    priceChangePercent: priceChangePercent
   });
 
   container.appendChild(header);
@@ -368,12 +370,28 @@ function renderMetrics(ticker, data) {
   });
 }
 
-/* ---------- Minimal line chart (canvas 2D, no libs) ---------- */
-function drawLine(canvas, series) {
+/* ---------- Minimal line chart (canvas 2D, no libs) with animation ---------- */
+function drawLine(canvas, series, accentColor = '#5aa8ff', gridColor = 'rgba(255,255,255,0.04)') {
   if (!canvas || !series || series.length < 2) return;
 
   const ctx = canvas.getContext('2d');
-  const w = canvas.width, h = canvas.height;
+  
+  // Get the device pixel ratio for crisp rendering on retina displays
+  const dpr = window.devicePixelRatio || 1;
+  
+  // Get the display size (CSS pixels)
+  const rect = canvas.getBoundingClientRect();
+  
+  // Scale canvas for high-DPI displays
+  canvas.width = rect.width * dpr;
+  canvas.height = rect.height * dpr;
+  
+  // Scale the context to match
+  ctx.scale(dpr, dpr);
+  
+  // Use CSS size for calculations
+  const w = rect.width;
+  const h = rect.height;
 
   // Clear
   ctx.clearRect(0, 0, w, h);
@@ -385,7 +403,7 @@ function drawLine(canvas, series) {
 
   // Draw fine grid (small squares like graph paper)
   const gridSize = 20; // Size of each grid square
-  ctx.strokeStyle = 'rgba(255,255,255,0.04)'; // Very subtle grid lines
+  ctx.strokeStyle = gridColor;
   ctx.lineWidth = 0.5;
   
   // Vertical lines
@@ -413,40 +431,189 @@ function drawLine(canvas, series) {
   const xScale = (t) => ( (t - minX) / (maxX - minX || 1) ) * (plotW - linePad*2) + linePad;
   const yScale = (v) => ( 1 - (v - minY) / (maxY - minY || 1) ) * (plotH - linePad*2) + linePad;
 
-  // Draw the price line
-  ctx.strokeStyle = '#5aa8ff'; // accent color
-  ctx.lineWidth = 2.5;
-  ctx.lineCap = 'round';
-  ctx.lineJoin = 'round';
-  ctx.beginPath();
-  series.forEach((pt, i) => {
-    const x = xScale(new Date(pt.date).getTime());
-    const y = yScale(pt.close);
-    if (i===0) ctx.moveTo(x,y); else ctx.lineTo(x,y);
-  });
-  ctx.stroke();
+  // Convert series to scaled coordinates
+  const points = series.map(pt => ({
+    x: xScale(new Date(pt.date).getTime()),
+    y: yScale(pt.close)
+  }));
+
+  // Animation parameters
+  const duration = 1500; // 1.5 seconds
+  const startTime = performance.now();
+
+  // Animate the line drawing
+  function animate(currentTime) {
+    const elapsed = currentTime - startTime;
+    const progress = Math.min(elapsed / duration, 1);
+    
+    // Easing function for smooth animation (ease-out)
+    const eased = 1 - Math.pow(1 - progress, 3);
+    
+    // Clear only the chart area (keep grid)
+    ctx.clearRect(0, 0, w, h);
+    
+    // Redraw grid
+    ctx.strokeStyle = gridColor;
+    ctx.lineWidth = 0.5;
+    
+    // Vertical lines
+    ctx.beginPath();
+    for (let x = 0; x <= w; x += gridSize) {
+      ctx.moveTo(x, 0);
+      ctx.lineTo(x, h);
+    }
+    ctx.stroke();
+    
+    // Horizontal lines
+    ctx.beginPath();
+    for (let y = 0; y <= h; y += gridSize) {
+      ctx.moveTo(0, y);
+      ctx.lineTo(w, y);
+    }
+    ctx.stroke();
+    
+    // Draw the price line with animation
+    ctx.imageSmoothingEnabled = true;
+    ctx.imageSmoothingQuality = 'high';
+    ctx.strokeStyle = accentColor;
+    ctx.lineWidth = 2.5;
+    ctx.lineCap = 'round';
+    ctx.lineJoin = 'round';
+    
+    // Calculate how many points to draw based on progress
+    const pointsToDraw = Math.floor(points.length * eased);
+    
+    if (pointsToDraw > 0) {
+      ctx.beginPath();
+      ctx.moveTo(points[0].x, points[0].y);
+      
+      for (let i = 1; i < pointsToDraw; i++) {
+        ctx.lineTo(points[i].x, points[i].y);
+      }
+      
+      // If we're mid-animation, interpolate the last point
+      if (pointsToDraw < points.length && progress < 1) {
+        const fraction = (points.length * eased) - pointsToDraw;
+        const prevPoint = points[pointsToDraw - 1];
+        const nextPoint = points[pointsToDraw];
+        const interpX = prevPoint.x + (nextPoint.x - prevPoint.x) * fraction;
+        const interpY = prevPoint.y + (nextPoint.y - prevPoint.y) * fraction;
+        ctx.lineTo(interpX, interpY);
+      }
+      
+      ctx.stroke();
+    }
+    
+    // Continue animation if not complete
+    if (progress < 1) {
+      requestAnimationFrame(animate);
+    }
+  }
+  
+  // Start the animation
+  requestAnimationFrame(animate);
 }
 
 /* ---------- No need for observers or chart switching ---------- */
 // Each section has its own chart that is already in the DOM
 // Stripe Press sticky behavior is handled purely by CSS position: sticky
 
+/* ---------- Theme switching based on scroll ---------- */
+let currentTheme = null;
+
+function setupThemeObserver() {
+  const sections = document.querySelectorAll('.stock-section');
+  const logo = document.querySelector('.logo');
+  
+  if (!logo) return;
+
+  // Function to check which section the logo is over
+  function updateLogoTheme() {
+    const logoRect = logo.getBoundingClientRect();
+    const logoCenter = logoRect.top + logoRect.height / 2;
+    
+    // Find which section the logo center is in
+    let activeSection = null;
+    sections.forEach(section => {
+      const rect = section.getBoundingClientRect();
+      if (logoCenter >= rect.top && logoCenter <= rect.bottom) {
+        activeSection = section.id;
+      }
+    });
+    
+    // Update if theme changed
+    if (activeSection && currentTheme !== activeSection) {
+      currentTheme = activeSection;
+      applyThemeToLogo(currentTheme);
+    }
+  }
+  
+  // Update on scroll
+  window.addEventListener('scroll', updateLogoTheme, { passive: true });
+  
+  // Set initial theme
+  if (sections.length > 0) {
+    currentTheme = sections[0].id;
+    applyThemeToLogo(currentTheme);
+  }
+}
+
+// Apply theme colors to logo instantly (no transition)
+function applyThemeToLogo(sectionId) {
+  const logo = document.querySelector('.logo');
+  const section = document.getElementById(sectionId);
+  const body = document.body;
+  
+  if (!logo || !section) {
+    console.log('Logo or section not found:', { logo, section: sectionId });
+    return;
+  }
+  
+  // Get the theme colors from the current section
+  const styles = getComputedStyle(section);
+  
+  const bgColor = styles.getPropertyValue('--theme-bg').trim();
+  const logoBg = styles.getPropertyValue('--theme-logo-bg').trim();
+  const logoText = styles.getPropertyValue('--theme-logo-text').trim();
+  
+  console.log(`Applying theme ${sectionId}: logoBg=${logoBg}, logoText=${logoText}`);
+  
+  // Apply background to body with transition
+  if (body) {
+    body.style.backgroundColor = bgColor;
+  }
+  
+  // Update the logo colors instantly
+  const logoTextEl = logo.querySelector('.logo-text');
+  logo.style.backgroundColor = logoBg;
+  console.log('Logo background set to:', logo.style.backgroundColor);
+  if (logoTextEl) {
+    logoTextEl.style.color = logoText;
+  }
+}
+
 /* ---------- Boot ---------- */
 async function boot() {
   // Load data for all stocks
-  const tickers = ['AAPL', 'AXP', 'KO'];
+  const tickers = ['AAPL', 'AXP', 'KO', 'BAC', 'V', 'CVX', 'MCO', 'KHC', 'KR', 'OXY'];
   
   // Draw charts and render metrics for each section
   for (const ticker of tickers) {
     const data = await loadData(ticker);
     
+    // Get theme colors for this section
+    const section = document.getElementById(ticker.toLowerCase());
+    const styles = getComputedStyle(section);
+    const accentColor = styles.getPropertyValue('--theme-accent').trim();
+    const gridColor = styles.getPropertyValue('--theme-grid').trim();
+    
     // Render stock header
     renderStockHeader(ticker, data);
     
-    // Draw chart
+    // Draw chart with theme colors
     const canvas = $(`#chart-${ticker.toLowerCase()}`);
     if (canvas && data.price_series) {
-      drawLine(canvas, data.price_series);
+      drawLine(canvas, data.price_series, accentColor, gridColor);
     }
     
     // Render "At a Glance" summary
@@ -456,11 +623,34 @@ async function boot() {
     renderMetrics(ticker, data);
   }
 
-  // Update header with latest date from AAPL
+  // Update header with latest date from AAPL (if element exists)
   const aaplData = state.cache.get('AAPL');
-  if (aaplData) {
+  if (aaplData && asOfEl) {
     asOfEl.textContent = `As of ${aaplData.current.date}`;
   }
+  
+  // Set up theme switching based on scroll
+  setupThemeObserver();
+  
+  // Create and append vertical navigation (large screens)
+  const sections = [
+    { id: 'aapl', label: 'AAPL' },
+    { id: 'axp', label: 'AXP' },
+    { id: 'ko', label: 'KO' },
+    { id: 'bac', label: 'BAC' },
+    { id: 'v', label: 'V' },
+    { id: 'cvx', label: 'CVX' },
+    { id: 'mco', label: 'MCO' },
+    { id: 'khc', label: 'KHC' },
+    { id: 'kr', label: 'KR' },
+    { id: 'oxy', label: 'OXY' }
+  ];
+  const verticalNav = createVerticalNav(sections);
+  document.body.appendChild(verticalNav);
+  
+  // Create and append mobile navigation arrows (small/medium screens)
+  const mobileNav = createMobileNav(sections);
+  document.body.appendChild(mobileNav);
 }
 
 boot();

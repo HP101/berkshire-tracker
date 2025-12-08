@@ -4,23 +4,22 @@
    ========================================================= */
 
 .metric-card {
-  background: var(--bg-secondary);
-  border-radius: 8px;
+  background: transparent;
   overflow: hidden;
-  margin-bottom: var(--space-3);
+  /* margin-bottom: var(--space-3); */
   transition: box-shadow 0.2s ease;
 }
 
-.metric-card:hover {
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-}
+/* .metric-card:hover {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+} */
 
 /* Row (clickable container) */
 .metric-row {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: var(--space-4);
+  padding: var(--space-2) 0;
   gap: var(--space-3);
 }
 
@@ -30,7 +29,7 @@
 }
 
 .metric-row--clickable:hover {
-  background: rgba(0, 0, 0, 0.02);
+  background: rgba(255, 255, 255, 0.03);
 }
 
 /* Left side: name + label */
@@ -42,19 +41,22 @@
 }
 
 .metric-name {
-  color: var(--text-primary);
-  font-size: var(--fs-base);
-  font-weight: 500;
+  color: var(--theme-text);
+  font-size: 16px;
+  font-weight: 510;
+  letter-spacing: -2%;
 }
 
 .metric-label {
-  padding: 4px 12px;
-  border-radius: 4px;
+  font-family: "JetBrains Mono", monospace;
+  padding: 2px 10px;
   font-size: 11px;
-  font-weight: 600;
+  font-weight: 510;
   text-transform: uppercase;
-  letter-spacing: 0.5px;
+  letter-spacing: -2%;
   white-space: nowrap;
+  background: var(--theme-metric-label-bg);
+  color: var(--theme-metric-label-text);
 }
 
 /* Right side: value + chevron */
@@ -65,14 +67,15 @@
 }
 
 .metric-value {
-  color: var(--text-primary);
-  font-size: var(--fs-lg);
-  font-weight: 600;
+  color: var(--theme-text);
+  font-size: 17px;
+  font-weight: 510;
+
   white-space: nowrap;
 }
 
 .metric-chevron {
-  color: var(--text-secondary);
+  color: var(--theme-text-muted);
   transition: transform 0.2s ease;
   flex-shrink: 0;
 }
@@ -84,31 +87,38 @@
 
 /* Description (accordion content) */
 .metric-description {
+  display: flex;
+  align-items: flex-start;
   max-height: 0;
   overflow: hidden;
-  transition: max-height 0.3s ease, padding 0.3s ease;
-  padding: 0 var(--space-4);
-  background: rgba(90, 168, 255, 0.05);
-  border-top: 1px solid transparent;
+  opacity: 0;
+  filter: blur(4px);
+  transition: max-height 0.25s cubic-bezier(0.4, 0, 0.2, 1), 
+              padding 0.25s cubic-bezier(0.4, 0, 0.2, 1),
+              opacity 0.2s cubic-bezier(0.4, 0, 0.2, 1),
+              filter 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  padding: 0 var(--space-1);
 }
 
 .metric-card--open .metric-description {
   max-height: 500px; /* Large enough for most descriptions */
-  padding: var(--space-4);
-  border-top-color: var(--border-color);
+  padding: var(--space-2) 4px;
+  opacity: 1;
+  filter: blur(0px);
 }
 
 .metric-description p {
   margin: 0;
-  color: var(--text-secondary);
-  font-size: var(--fs-sm);
+  color: var(--theme-text);
+  font-size: 14px;
   line-height: 1.6;
+  flex: 1;
 }
 
 /* Responsive adjustments */
 @media (max-width: 640px) {
   .metric-row {
-    padding: var(--space-3);
+    padding: var(--space-3) 0;
   }
   
   .metric-left {
@@ -118,10 +128,10 @@
   }
   
   .metric-name {
-    font-size: var(--fs-sm);
+    font-size: 16px;
   }
   
   .metric-value {
-    font-size: var(--fs-base);
+    font-size: 17px;
   }
 }

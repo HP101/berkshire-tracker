@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Berkshire Tracker — v0</title>
+  <title>Berkshire Hathaway Tracker</title>
 
 
   <link rel="stylesheet" href="/src/styles/tokens.css">
@@ -14,13 +14,11 @@
 </head>
 <body>
 
-  <header class="site-header">
-    <div class="brand">
-      <span class="dot" aria-hidden="true"></span>
-      <strong>Berkshire Tracker</strong>
+  <div class="logo">
+    <div class="logo-text">
+      <span class="logo-text-bold">B</span>erkshire <span class="logo-text-bold">H</span>athaway<br> <span class="logo-text-italic">Tracker</span>
     </div>
-    <div class="asof" id="asOf">As of —</div>
-  </header>
+  </div>
 
   <main id="app">
     <div class="app-wrapper">
@@ -49,22 +47,24 @@
             Berkshire finally bough their first tech stock in 2016, and it was one of their investments, despite only having a runway of 10 years. Apple became the crown jewel in Berkshire’s portfolio.
           </p>
 
-          <!-- Basic Metrics -->
-          <div class="metrics-section">
-            <h3 class="metrics-section-title">Basic Metrics</h3>
-            <div id="metrics-basic-aapl" class="metrics-container"></div>
-          </div>
+          <div class="metrics-sections-wrapper">
+            <!-- Basic Metrics -->
+            <div class="metrics-section">
+              <h3 class="metrics-section-title">Basic Metrics</h3>
+              <div id="metrics-basic-aapl" class="metrics-container"></div>
+            </div>
 
-          <!-- S&P 500 Comparison -->
-          <div class="metrics-section">
-            <h3 class="metrics-section-title">S&P 500 Comparison</h3>
-            <div id="metrics-sp500-aapl" class="metrics-container"></div>
-          </div>
+            <!-- S&P 500 Comparison -->
+            <div class="metrics-section">
+              <h3 class="metrics-section-title">S&P 500 Comparison</h3>
+              <div id="metrics-sp500-aapl" class="metrics-container"></div>
+            </div>
 
-          <!-- Buffett Metrics -->
-          <div class="metrics-section">
-            <h3 class="metrics-section-title">Buffett Metrics</h3>
-            <div id="metrics-buffett-aapl" class="metrics-container"></div>
+            <!-- Buffett Metrics -->
+            <div class="metrics-section">
+              <h3 class="metrics-section-title">Buffett Metrics</h3>
+              <div id="metrics-buffett-aapl" class="metrics-container"></div>
+            </div>
           </div>
 
         </article>
@@ -89,29 +89,29 @@
           <!-- Stock header rendered by JavaScript -->
           <div id="header-axp"></div>
 
-          <p class="stock-meta">First invested: 1964 · Financials use bank-specific metrics (v2)</p>
-
           <p class="stock-description">
             One of Berkshire's longest-held positions, American Express represents the kind of 
             durable competitive advantage Buffett seeks.
           </p>
 
-          <!-- Basic Metrics -->
-          <div class="metrics-section">
-            <h3 class="metrics-section-title">Basic Metrics</h3>
-            <div id="metrics-basic-axp" class="metrics-container"></div>
-          </div>
+          <div class="metrics-sections-wrapper">
+            <!-- Basic Metrics -->
+            <div class="metrics-section">
+              <h3 class="metrics-section-title">Basic Metrics</h3>
+              <div id="metrics-basic-axp" class="metrics-container"></div>
+            </div>
 
-          <!-- S&P 500 Comparison -->
-          <div class="metrics-section">
-            <h3 class="metrics-section-title">S&P 500 Comparison</h3>
-            <div id="metrics-sp500-axp" class="metrics-container"></div>
-          </div>
+            <!-- S&P 500 Comparison -->
+            <div class="metrics-section">
+              <h3 class="metrics-section-title">S&P 500 Comparison</h3>
+              <div id="metrics-sp500-axp" class="metrics-container"></div>
+            </div>
 
-          <!-- Buffett Metrics -->
-          <div class="metrics-section">
-            <h3 class="metrics-section-title">Buffett Metrics</h3>
-            <div id="metrics-buffett-axp" class="metrics-container"></div>
+            <!-- Buffett Metrics -->
+            <div class="metrics-section">
+              <h3 class="metrics-section-title">Buffett Metrics</h3>
+              <div id="metrics-buffett-axp" class="metrics-container"></div>
+            </div>
           </div>
         </article>
       </div>
@@ -135,48 +135,360 @@
           <!-- Stock header rendered by JavaScript -->
           <div id="header-ko"></div>
 
-          <p class="stock-meta">First invested: 1988 · Classic Buffett compounder</p>
-
           <p class="stock-description">
             A classic Buffett investment, Coca-Cola exemplifies his preference for simple, 
             predictable businesses with global reach.
           </p>
 
-          <!-- Basic Metrics -->
-          <div class="metrics-section">
-            <h3 class="metrics-section-title">Basic Metrics</h3>
-            <div id="metrics-basic-ko" class="metrics-container"></div>
-          </div>
+          <div class="metrics-sections-wrapper">
+            <!-- Basic Metrics -->
+            <div class="metrics-section">
+              <h3 class="metrics-section-title">Basic Metrics</h3>
+              <div id="metrics-basic-ko" class="metrics-container"></div>
+            </div>
 
-          <!-- S&P 500 Comparison -->
-          <div class="metrics-section">
-            <h3 class="metrics-section-title">S&P 500 Comparison</h3>
-            <div id="metrics-sp500-ko" class="metrics-container"></div>
-          </div>
+            <!-- S&P 500 Comparison -->
+            <div class="metrics-section">
+              <h3 class="metrics-section-title">S&P 500 Comparison</h3>
+              <div id="metrics-sp500-ko" class="metrics-container"></div>
+            </div>
 
-          <!-- Buffett Metrics -->
-          <div class="metrics-section">
-            <h3 class="metrics-section-title">Buffett Metrics</h3>
-            <div id="metrics-buffett-ko" class="metrics-container"></div>
+            <!-- Buffett Metrics -->
+            <div class="metrics-section">
+              <h3 class="metrics-section-title">Buffett Metrics</h3>
+              <div id="metrics-buffett-ko" class="metrics-container"></div>
+            </div>
           </div>
 
 
         </article>
       </div>
     </section>
+
+    <!-- Section 4: Bank of America -->
+    <section class="stock-section" id="bac" data-ticker="BAC">
+      <div class="section-inner">
+        <aside class="sticky-chart" aria-label="Bank of America chart">
+          <div class="chart-card">
+            <div class="chart-container">
+              <canvas id="chart-bac" width="800" height="600" aria-label="Bank of America price chart" role="img"></canvas>
+            </div>
+          </div>
+          
+          <!-- At a Glance summary -->
+          <div id="glance-bac"></div>
+        </aside>
+
+        <article class="stock-content">
+          <!-- Stock header rendered by JavaScript -->
+          <div id="header-bac"></div>
+
+          <p class="stock-description">
+            Bank of America represents Buffett's conviction in American banking. After the financial crisis, 
+            Berkshire invested heavily as the bank rebuilt its balance sheet and reputation.
+          </p>
+
+          <div class="metrics-sections-wrapper">
+            <!-- Basic Metrics -->
+            <div class="metrics-section">
+              <h3 class="metrics-section-title">Basic Metrics</h3>
+              <div id="metrics-basic-bac" class="metrics-container"></div>
+            </div>
+
+            <!-- S&P 500 Comparison -->
+            <div class="metrics-section">
+              <h3 class="metrics-section-title">S&P 500 Comparison</h3>
+              <div id="metrics-sp500-bac" class="metrics-container"></div>
+            </div>
+
+            <!-- Buffett Metrics -->
+            <div class="metrics-section">
+              <h3 class="metrics-section-title">Buffett Metrics</h3>
+              <div id="metrics-buffett-bac" class="metrics-container"></div>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- Section 5: Visa -->
+    <section class="stock-section" id="v" data-ticker="V">
+      <div class="section-inner">
+        <aside class="sticky-chart" aria-label="Visa chart">
+          <div class="chart-card">
+            <div class="chart-container">
+              <canvas id="chart-v" width="800" height="600" aria-label="Visa price chart" role="img"></canvas>
+            </div>
+          </div>
+          
+          <!-- At a Glance summary -->
+          <div id="glance-v"></div>
+        </aside>
+
+        <article class="stock-content">
+          <!-- Stock header rendered by JavaScript -->
+          <div id="header-v"></div>
+
+          <p class="stock-description">
+            Visa is the ultimate tollbooth business - taking a small cut of every transaction with minimal 
+            capital requirements. A perfect Buffett investment in the digital payments revolution.
+          </p>
+
+          <div class="metrics-sections-wrapper">
+            <!-- Basic Metrics -->
+            <div class="metrics-section">
+              <h3 class="metrics-section-title">Basic Metrics</h3>
+              <div id="metrics-basic-v" class="metrics-container"></div>
+            </div>
+
+            <!-- S&P 500 Comparison -->
+            <div class="metrics-section">
+              <h3 class="metrics-section-title">S&P 500 Comparison</h3>
+              <div id="metrics-sp500-v" class="metrics-container"></div>
+            </div>
+
+            <!-- Buffett Metrics -->
+            <div class="metrics-section">
+              <h3 class="metrics-section-title">Buffett Metrics</h3>
+              <div id="metrics-buffett-v" class="metrics-container"></div>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- Section 6: Chevron -->
+    <section class="stock-section" id="cvx" data-ticker="CVX">
+      <div class="section-inner">
+        <aside class="sticky-chart" aria-label="Chevron chart">
+          <div class="chart-card">
+            <div class="chart-container">
+              <canvas id="chart-cvx" width="800" height="600" aria-label="Chevron price chart" role="img"></canvas>
+            </div>
+          </div>
+          
+          <!-- At a Glance summary -->
+          <div id="glance-cvx"></div>
+        </aside>
+
+        <article class="stock-content">
+          <!-- Stock header rendered by JavaScript -->
+          <div id="header-cvx"></div>
+
+          <p class="stock-description">
+            Chevron represents a bet on traditional energy remaining relevant. With a fortress balance sheet 
+            and steady dividends, it's a contrarian play in the energy transition era.
+          </p>
+
+          <div class="metrics-sections-wrapper">
+            <!-- Basic Metrics -->
+            <div class="metrics-section">
+              <h3 class="metrics-section-title">Basic Metrics</h3>
+              <div id="metrics-basic-cvx" class="metrics-container"></div>
+            </div>
+
+            <!-- S&P 500 Comparison -->
+            <div class="metrics-section">
+              <h3 class="metrics-section-title">S&P 500 Comparison</h3>
+              <div id="metrics-sp500-cvx" class="metrics-container"></div>
+            </div>
+
+            <!-- Buffett Metrics -->
+            <div class="metrics-section">
+              <h3 class="metrics-section-title">Buffett Metrics</h3>
+              <div id="metrics-buffett-cvx" class="metrics-container"></div>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- Section 7: Moody's -->
+    <section class="stock-section" id="mco" data-ticker="MCO">
+      <div class="section-inner">
+        <aside class="sticky-chart" aria-label="Moody's chart">
+          <div class="chart-card">
+            <div class="chart-container">
+              <canvas id="chart-mco" width="800" height="600" aria-label="Moody's price chart" role="img"></canvas>
+            </div>
+          </div>
+          
+          <!-- At a Glance summary -->
+          <div id="glance-mco"></div>
+        </aside>
+
+        <article class="stock-content">
+          <!-- Stock header rendered by JavaScript -->
+          <div id="header-mco"></div>
+
+          <p class="stock-description">
+            Moody's operates in a credit rating duopoly with minimal capital needs and exceptional margins. 
+            It's a classic high-quality compounder that benefits from increased market complexity.
+          </p>
+
+          <div class="metrics-sections-wrapper">
+            <!-- Basic Metrics -->
+            <div class="metrics-section">
+              <h3 class="metrics-section-title">Basic Metrics</h3>
+              <div id="metrics-basic-mco" class="metrics-container"></div>
+            </div>
+
+            <!-- S&P 500 Comparison -->
+            <div class="metrics-section">
+              <h3 class="metrics-section-title">S&P 500 Comparison</h3>
+              <div id="metrics-sp500-mco" class="metrics-container"></div>
+            </div>
+
+            <!-- Buffett Metrics -->
+            <div class="metrics-section">
+              <h3 class="metrics-section-title">Buffett Metrics</h3>
+              <div id="metrics-buffett-mco" class="metrics-container"></div>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- Section 8: Kraft Heinz -->
+    <section class="stock-section" id="khc" data-ticker="KHC">
+      <div class="section-inner">
+        <aside class="sticky-chart" aria-label="Kraft Heinz chart">
+          <div class="chart-card">
+            <div class="chart-container">
+              <canvas id="chart-khc" width="800" height="600" aria-label="Kraft Heinz price chart" role="img"></canvas>
+            </div>
+          </div>
+          
+          <!-- At a Glance summary -->
+          <div id="glance-khc"></div>
+        </aside>
+
+        <article class="stock-content">
+          <!-- Stock header rendered by JavaScript -->
+          <div id="header-khc"></div>
+
+          <p class="stock-description">
+            A rare misstep for Buffett. The 3G Capital partnership and aggressive cost-cutting haven't 
+            delivered as expected. Legacy food brands face intense competition and changing consumer tastes.
+          </p>
+
+          <div class="metrics-sections-wrapper">
+            <!-- Basic Metrics -->
+            <div class="metrics-section">
+              <h3 class="metrics-section-title">Basic Metrics</h3>
+              <div id="metrics-basic-khc" class="metrics-container"></div>
+            </div>
+
+            <!-- S&P 500 Comparison -->
+            <div class="metrics-section">
+              <h3 class="metrics-section-title">S&P 500 Comparison</h3>
+              <div id="metrics-sp500-khc" class="metrics-container"></div>
+            </div>
+
+            <!-- Buffett Metrics -->
+            <div class="metrics-section">
+              <h3 class="metrics-section-title">Buffett Metrics</h3>
+              <div id="metrics-buffett-khc" class="metrics-container"></div>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- Section 9: Kroger -->
+    <section class="stock-section" id="kr" data-ticker="KR">
+      <div class="section-inner">
+        <aside class="sticky-chart" aria-label="Kroger chart">
+          <div class="chart-card">
+            <div class="chart-container">
+              <canvas id="chart-kr" width="800" height="600" aria-label="Kroger price chart" role="img"></canvas>
+            </div>
+          </div>
+          
+          <!-- At a Glance summary -->
+          <div id="glance-kr"></div>
+        </aside>
+
+        <article class="stock-content">
+          <!-- Stock header rendered by JavaScript -->
+          <div id="header-kr"></div>
+
+          <p class="stock-description">
+            Kroger is America's largest traditional supermarket chain. While margins are thin in grocery retail, 
+            the business benefits from essential demand and steady cash flow generation.
+          </p>
+
+          <div class="metrics-sections-wrapper">
+            <!-- Basic Metrics -->
+            <div class="metrics-section">
+              <h3 class="metrics-section-title">Basic Metrics</h3>
+              <div id="metrics-basic-kr" class="metrics-container"></div>
+            </div>
+
+            <!-- S&P 500 Comparison -->
+            <div class="metrics-section">
+              <h3 class="metrics-section-title">S&P 500 Comparison</h3>
+              <div id="metrics-sp500-kr" class="metrics-container"></div>
+            </div>
+
+            <!-- Buffett Metrics -->
+            <div class="metrics-section">
+              <h3 class="metrics-section-title">Buffett Metrics</h3>
+              <div id="metrics-buffett-kr" class="metrics-container"></div>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- Section 10: Occidental Petroleum -->
+    <section class="stock-section" id="oxy" data-ticker="OXY">
+      <div class="section-inner">
+        <aside class="sticky-chart" aria-label="Occidental Petroleum chart">
+          <div class="chart-card">
+            <div class="chart-container">
+              <canvas id="chart-oxy" width="800" height="600" aria-label="Occidental Petroleum price chart" role="img"></canvas>
+            </div>
+          </div>
+          
+          <!-- At a Glance summary -->
+          <div id="glance-oxy"></div>
+        </aside>
+
+        <article class="stock-content">
+          <!-- Stock header rendered by JavaScript -->
+          <div id="header-oxy"></div>
+
+          <p class="stock-description">
+            Buffett's aggressive bet on Occidental came after their Anadarko acquisition. With premier 
+            Permian Basin assets and improving debt levels, it's a play on energy fundamentals and quality management.
+          </p>
+
+          <div class="metrics-sections-wrapper">
+            <!-- Basic Metrics -->
+            <div class="metrics-section">
+              <h3 class="metrics-section-title">Basic Metrics</h3>
+              <div id="metrics-basic-oxy" class="metrics-container"></div>
+            </div>
+
+            <!-- S&P 500 Comparison -->
+            <div class="metrics-section">
+              <h3 class="metrics-section-title">S&P 500 Comparison</h3>
+              <div id="metrics-sp500-oxy" class="metrics-container"></div>
+            </div>
+
+            <!-- Buffett Metrics -->
+            <div class="metrics-section">
+              <h3 class="metrics-section-title">Buffett Metrics</h3>
+              <div id="metrics-buffett-oxy" class="metrics-container"></div>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
     
     </div><!-- .app-wrapper -->
   </main>
-
-  <!-- Footer -->
-  <footer class="site-footer">
-    <nav class="footer-nav">
-      <a href="#aapl">AAPL</a>
-      <a href="#axp">AXP</a>
-      <a href="#ko">KO</a>
-    </nav>
-    <small>Prototype · For education · Data mocked</small>
-  </footer>
 
   <!-- Chart.js (UMD bundle) -->
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.6/dist/chart.umd.min.js"></script>

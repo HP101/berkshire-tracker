@@ -1,0 +1,87 @@
+{
+  "ticker": "KR",
+  "name": "Kroger",
+  "sector": "Retail",
+  "invested_year": 2022,
+  
+  "portfolio_weight": 0.02,
+  "portfolio_rank": 9,
+  "initial_investment": 215000000,
+  "total_shares_bought": 4553191,
+  
+  "entry": { "price": 47.2, "date": "2016-03-31", "method": "Q1 average (mock)" },
+  "current": { "price": 62, "date": "2025-11-10" },
+  "benchmark": { "symbol": "SPY", "entry_price": 176, "current_price": 670 },
+  "price_series": [
+    { "date": "2016-04-01", "close": 48.5 },
+    { "date": "2017-01-03", "close": 44.2 },
+    { "date": "2018-01-02", "close": 38.8 },
+    { "date": "2019-01-02", "close": 42.1 },
+    { "date": "2020-01-02", "close": 48.6 },
+    { "date": "2021-01-04", "close": 52.3 },
+    { "date": "2022-01-03", "close": 58.7 },
+    { "date": "2023-01-03", "close": 55.2 },
+    { "date": "2024-01-02", "close": 59.8 },
+    { "date": "2025-01-02", "close": 61.2 }
+  ],
+  
+  "buffett_metrics": {
+    "roic": {
+      "value": 0.11,
+      "rating": "GOOD",
+      "description": "11% return on capital - strong for grocery retail."
+    },
+    "fcf": {
+      "value": 2800000000,
+      "rating": "GOOD",
+      "description": "Generates ~$2.8B in free cash flow from grocery operations."
+    },
+    "fcf_margin": {
+      "value": 0.02,
+      "rating": "AVERAGE",
+      "description": "2% FCF margin typical for low-margin grocery business."
+    },
+    "revenue_cagr": {
+      "value": 0.06,
+      "rating": "GOOD",
+      "description": "6% revenue growth from same-store sales and expansion."
+    },
+    "net_income_cagr": {
+      "value": 0.08,
+      "rating": "GOOD",
+      "description": "8% profit growth from operational efficiency initiatives."
+    },
+    "operating_margin_stability": {
+      "value": "High",
+      "rating": "GOOD",
+      "description": "Operating margins stable at 2.5-3% despite thin grocery margins."
+    },
+    "net_margin_stability": {
+      "value": "High",
+      "rating": "GOOD",
+      "description": "Net margins consistently 1.5-2%. Predictable staples business."
+    },
+    "reinvestment_rate": {
+      "value": 0.30,
+      "rating": "AVERAGE",
+      "description": "Moderate reinvestment in stores, technology, and e-commerce."
+    },
+    "dividend_cagr": {
+      "value": 0.13,
+      "rating": "REALLY GOOD",
+      "description": "13% dividend growth showing confidence despite thin margins."
+    },
+    "net_debt_ebitda": {
+      "value": 1.8,
+      "rating": "GOOD",
+      "description": "Manageable leverage for a stable grocery retailer."
+    },
+    "recession_performance": {
+      "value": "Excellent",
+      "rating": "REALLY GOOD",
+      "description": "Essential goods retailer. Benefits from at-home eating in downturns."
+    }
+  },
+  
+  "financials": { "ttm": {}, "annual": [] }
+}

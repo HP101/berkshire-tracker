@@ -1,12 +1,15 @@
 /* --- Main container padding --- */
 #app {
-  padding-left: 110px;
-  padding-right: 110px;
+  padding-left: 0;
+  padding-right: 0;
+  padding-top: 0; /* No header spacing needed */
+  background: transparent;
 }
 
-/* App wrapper - no styles needed, just structural */
+/* App wrapper - stays transparent, sections handle backgrounds */
 .app-wrapper {
-  /* Container for all sections */
+  background: transparent;
+  /* No padding/margin - let sections fill completely */
 }
 
 /* --- TRUE Stripe Press sticky sections --- */
@@ -15,6 +18,234 @@
   position: relative;
   min-height: 100vh; /* at least full viewport height */
   border-bottom: 1px solid var(--line);
+  padding-left: 102px;
+  padding-right: 102px;
+  /* Full width background - no gaps */
+  width: 100%;
+}
+
+/* ======================================
+   STOCK SECTION THEMES
+   ====================================== */
+
+/* Apple Theme - Sleek dark with subtle blue accent */
+.stock-section#aapl {
+  --theme-bg: #F5F5F7;
+  --theme-text: #313132;
+  --theme-text-muted: #7F7F81;
+  --theme-accent: #313132;
+  --theme-checkmark: #197EE6;
+  --theme-metric-label-bg: #197EE6;
+  --theme-metric-label-text: #F5F5F7;
+  --theme-card-bg: #F5F5F7;
+  --theme-surface: #F5F5F7;
+  --theme-border: #F5F5F7;
+  --theme-grid: rgba(49, 49, 50, 0.1); /* #313132 with 10% opacity */
+  --theme-logo-bg: #313132;
+  --theme-logo-text: #F5F5F7;
+  --theme-up: #19c37d;
+  --theme-down: #ff6464;
+  
+  background: var(--theme-bg);
+  color: var(--theme-text);
+}
+
+/* American Express Theme - Blue */
+.stock-section#axp {
+  --theme-bg: #016FD0;
+  --theme-text: #fafafa;
+  --theme-text-muted: #fafafa;
+  --theme-accent: #fafafa; /* White chart line on blue background */
+  --theme-checkmark: #016FD0;
+  --theme-metric-label-bg: #ffffff;
+  --theme-metric-label-text: #016FD0;
+  --theme-card-bg: #016FD0;
+  --theme-surface: #016FD0;
+  --theme-border: #016FD0;
+  --theme-grid: rgba(255,255,255,0.15); /* Slightly more visible white grid */
+  --theme-logo-bg: #ffffff;
+  --theme-logo-text: #016FD0;
+  --theme-up: #19c37d;
+  --theme-down: #ff6464;
+  
+  background: var(--theme-bg);
+  color: var(--theme-text);
+}
+
+/* Coca-Cola Theme - Classic Red */
+.stock-section#ko {
+  --theme-bg: #ffffff;
+  --theme-text: #F4010A;
+  --theme-text-muted: #dd8f92;
+  --theme-accent: #F4010A; /* Red chart line on white background */
+  --theme-checkmark: #F4010A;
+  --theme-metric-label-bg: #F4010A;
+  --theme-metric-label-text: #ffffff;
+  --theme-card-bg: #ffffff;
+  --theme-surface: #ffffff;
+  --theme-border: #ffffff;
+  --theme-grid: rgba(244, 1, 10, 0.1); /* Red grid on white */
+  --theme-logo-bg: #F4010A;
+  --theme-logo-text: #ffffff;
+  --theme-up: #19c37d;
+  --theme-down: #ffeb3b;
+  
+  background: var(--theme-bg);
+  color: var(--theme-text);
+}
+
+/* Bank of America Theme - Banking Blue-Green */
+.stock-section#bac {
+  --theme-bg: #012169;
+  --theme-text: #ffffff;
+  --theme-text-muted: rgba(255,255,255,0.8);
+  --theme-accent: #E31837; /* Red accent for chart */
+  --theme-checkmark: #E31837;
+  --theme-metric-label-bg: #E31837;
+  --theme-metric-label-text: #ffffff;
+  --theme-card-bg: #012169;
+  --theme-surface: #012169;
+  --theme-border: #012169;
+  --theme-grid: rgba(227, 24, 55, 0.15);
+  --theme-logo-bg: #E31837;
+  --theme-logo-text: #ffffff;
+  --theme-up: #19c37d;
+  --theme-down: #ff6464;
+  
+  background: var(--theme-bg);
+  color: var(--theme-text);
+}
+
+/* Visa Theme - Blue and Gold */
+.stock-section#v {
+  --theme-bg: #1A1F71;
+  --theme-text: #ffffff;
+  --theme-text-muted: rgba(255,255,255,0.8);
+  --theme-accent: #F7B600; /* Gold chart line */
+  --theme-checkmark: #F7B600;
+  --theme-metric-label-bg: #F7B600;
+  --theme-metric-label-text: #1A1F71;
+  --theme-card-bg: #1A1F71;
+  --theme-surface: #1A1F71;
+  --theme-border: #1A1F71;
+  --theme-grid: rgba(247, 182, 0, 0.15);
+  --theme-logo-bg: #F7B600;
+  --theme-logo-text: #1A1F71;
+  --theme-up: #19c37d;
+  --theme-down: #ff6464;
+  
+  background: var(--theme-bg);
+  color: var(--theme-text);
+}
+
+/* Chevron Theme - Energy Red and Blue */
+.stock-section#cvx {
+  --theme-bg: #003DA5;
+  --theme-text: #ffffff;
+  --theme-text-muted: rgba(255,255,255,0.8);
+  --theme-accent: #DA291C; /* Chevron red for chart */
+  --theme-checkmark: #DA291C;
+  --theme-metric-label-bg: #DA291C;
+  --theme-metric-label-text: #ffffff;
+  --theme-card-bg: #003DA5;
+  --theme-surface: #003DA5;
+  --theme-border: #003DA5;
+  --theme-grid: rgba(218, 41, 28, 0.15);
+  --theme-logo-bg: #DA291C;
+  --theme-logo-text: #ffffff;
+  --theme-up: #19c37d;
+  --theme-down: #ffeb3b;
+  
+  background: var(--theme-bg);
+  color: var(--theme-text);
+}
+
+/* Moody's Theme - Professional Dark Blue */
+.stock-section#mco {
+  --theme-bg: #003B5C;
+  --theme-text: #ffffff;
+  --theme-text-muted: rgba(255,255,255,0.8);
+  --theme-accent: #00A3E0; /* Bright blue chart line */
+  --theme-checkmark: #00A3E0;
+  --theme-metric-label-bg: #00A3E0;
+  --theme-metric-label-text: #003B5C;
+  --theme-card-bg: #003B5C;
+  --theme-surface: #003B5C;
+  --theme-border: #003B5C;
+  --theme-grid: rgba(0, 163, 224, 0.15);
+  --theme-logo-bg: #00A3E0;
+  --theme-logo-text: #003B5C;
+  --theme-up: #19c37d;
+  --theme-down: #ff6464;
+  
+  background: var(--theme-bg);
+  color: var(--theme-text);
+}
+
+/* Kraft Heinz Theme - Red and Navy */
+.stock-section#khc {
+  --theme-bg: #97262E;
+  --theme-text: #ffffff;
+  --theme-text-muted: rgba(255,255,255,0.8);
+  --theme-accent: #FFD200; /* Yellow mustard accent */
+  --theme-checkmark: #FFD200;
+  --theme-metric-label-bg: #FFD200;
+  --theme-metric-label-text: #97262E;
+  --theme-card-bg: #97262E;
+  --theme-surface: #97262E;
+  --theme-border: #97262E;
+  --theme-grid: rgba(255, 210, 0, 0.15);
+  --theme-logo-bg: #FFD200;
+  --theme-logo-text: #97262E;
+  --theme-up: #19c37d;
+  --theme-down: #ff6464;
+  
+  background: var(--theme-bg);
+  color: var(--theme-text);
+}
+
+/* Kroger Theme - Clean Blue */
+.stock-section#kr {
+  --theme-bg: #0067B1;
+  --theme-text: #ffffff;
+  --theme-text-muted: rgba(255,255,255,0.8);
+  --theme-accent: #ffffff; /* White chart line */
+  --theme-checkmark: #ffffff;
+  --theme-metric-label-bg: #ffffff;
+  --theme-metric-label-text: #0067B1;
+  --theme-card-bg: #0067B1;
+  --theme-surface: #0067B1;
+  --theme-border: #0067B1;
+  --theme-grid: rgba(255,255,255,0.15);
+  --theme-logo-bg: #ffffff;
+  --theme-logo-text: #0067B1;
+  --theme-up: #19c37d;
+  --theme-down: #ffeb3b;
+  
+  background: var(--theme-bg);
+  color: var(--theme-text);
+}
+
+/* Occidental Petroleum Theme - Dark Teal */
+.stock-section#oxy {
+  --theme-bg: #004B87;
+  --theme-text: #ffffff;
+  --theme-text-muted: rgba(255,255,255,0.8);
+  --theme-accent: #00A3BF; /* Bright teal chart line */
+  --theme-checkmark: #00A3BF;
+  --theme-metric-label-bg: #00A3BF;
+  --theme-metric-label-text: #004B87;
+  --theme-card-bg: #004B87;
+  --theme-surface: #004B87;
+  --theme-border: #004B87;
+  --theme-grid: rgba(0, 163, 191, 0.15);
+  --theme-logo-bg: #00A3BF;
+  --theme-logo-text: #004B87;
+  --theme-up: #19c37d;
+  --theme-down: #ff6464;
+  
+  background: var(--theme-bg);
+  color: var(--theme-text);
 }
 
 /* Inner grid: sticky left, scrolling right */
@@ -49,20 +280,21 @@
   margin: 0;
   font-size: var(--fs-xxl);
   font-weight: 650;
+  color: var(--theme-text);
 }
 
 .stock-meta {
-  color: var(--muted);
+  color: var(--theme-text-muted);
   font-size: var(--fs-sm);
   margin: var(--space-2) 0 0;
 }
   
 /* Chart card */
 .chart-card {
-  background: var(--card);
-  border: 1px solid var(--line);
+  background: var(--theme-card-bg);
+  border: none;
   border-radius: var(--radius);
-  box-shadow: var(--shadow);
+  box-shadow: none;
   padding: 0;
   display: flex;
   flex-direction: column;
@@ -72,11 +304,11 @@
   margin: 0;
   font-size: var(--fs-xl);
   font-weight: 650;
-  color: var(--text);
+  color: var(--theme-text);
 }
 
 .chart-container {
-  background: var(--surface);
+  background: var(--theme-surface);
   border-radius: var(--radius);
   overflow: hidden;
   height: calc(75vh - 200px); /* 75% of viewport minus space for at-a-glance */
@@ -95,26 +327,27 @@
 
 /* The small methodology line under the chart */
 .method-note {
-  color: var(--muted);
+  color: var(--theme-text-muted);
   font-size: var(--fs-sm);
   margin: 0;
 }
 
-/* Metrics section grouping */
-.metrics-section {
-  margin-top: var(--space-6);
-}
-
-.metrics-section:first-of-type {
-  margin-top: var(--space-5); /* First section has less top margin */
+/* Metrics sections wrapper - flex container to control gap */
+.metrics-sections-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 64px;
+  margin-top: var(--space-5);
 }
 
 .metrics-section-title {
-  font-size: var(--fs-lg);
-  font-weight: 650;
-  color: var(--text);
-  margin: 0 0 var(--space-3) 0;
-  letter-spacing: -0.01em;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--theme-text-muted);
+  margin: 0 0 var(--space-2) 0;
+  letter-spacing: -2%;
+  text-transform: uppercase;
 }
 
 /* Metrics container in right scrolling column */
@@ -124,42 +357,263 @@
   gap: var(--space-3);
 }
 
-/* Stock description paragraph */
-.stock-description {
-  margin-top: var(--space-5);
-  line-height: 1.6;
-}
-
 /* Metrics card styles in right content area */
 .metrics-card {
-  background: var(--card);
-  border: 1px solid var(--line);
+  background: var(--theme-card-bg);
+  border: 1px solid var(--theme-border);
   border-radius: var(--radius);
   box-shadow: var(--shadow);
   padding: var(--space-4);
 }
+
+/* Stock description paragraph */
+.stock-description {
+  line-height: 1.6;
+  color: var(--theme-text);
+}
   
   
+/* ======================================
+   VERTICAL NAVIGATION
+   ====================================== */
+
+/* Vertical nav - hidden by default (shows on large screens) */
+.vertical-nav {
+  display: none; /* Hidden on small/medium screens */
+  position: fixed;
+  left: 32px; /* Distance from left edge */
+  top: 50%;
+  transform: translateY(-50%); /* Center vertically */
+  z-index: 1000;
+}
+
+.vertical-nav-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 24px; /* Space between nav items */
+}
+
+.vertical-nav-item {
+  margin: 0;
+  padding: 0;
+}
+
+.vertical-nav-link {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+/* The logo indicator */
+.vertical-nav-logo {
+  width: 32px;
+  height: 32px;
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.9);
+  border: 2px solid rgba(49, 49, 50, 0.1);
+  transition: all 0.3s ease;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  opacity: 0.3; /* Inactive logos are more transparent */
+}
+
+.vertical-nav-logo img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  padding: 4px;
+}
+
+/* Text-based logos (like BAC) */
+.vertical-nav-logo--text {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 18px;
+  font-weight: 700;
+  color: #E31837; /* Bank of America red */
+  background: rgba(255, 255, 255, 0.95);
+}
+
+/* Label (hidden by default, shows on hover) */
+.vertical-nav-label {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 12px;
+  font-weight: 500;
+  color: rgba(49, 49, 50, 0.7);
+  opacity: 0;
+  transform: translateX(-8px);
+  transition: all 0.2s ease;
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+/* Hover state */
+.vertical-nav-link:hover .vertical-nav-logo {
+  transform: scale(1.1);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+  border-color: rgba(49, 49, 50, 0.2);
+  opacity: 0.7; /* Hover increases opacity slightly */
+}
+
+.vertical-nav-link:hover .vertical-nav-label {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Active state - highlighted logo */
+.vertical-nav-link.active .vertical-nav-logo {
+  transform: scale(1.15);
+  border: 2px solid rgba(49, 49, 50, 0.1);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  opacity: 1; /* Active logo is fully opaque */
+}
+
+.vertical-nav-link.active .vertical-nav-label {
+  color: #313132;
+  font-weight: 600;
+}
+
+/* Show vertical nav on large screens only */
+@media (min-width: 1400px) {
+  .vertical-nav {
+    display: block;
+  }
+}
+
+/* ======================================
+   MOBILE NAVIGATION ARROWS
+   ====================================== */
+
+/* Mobile nav - shown by default, hidden on large screens */
+.mobile-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  position: fixed;
+  left: 8px; /* Distance from left edge */
+  top: 50%; /* Center vertically */
+  transform: translateY(-50%); /* Center adjustment */
+  z-index: 1000;
+}
+
+/* Individual arrow button */
+.mobile-nav-arrow {
+  width: 40px;
+  height: 40px;
+  min-width: 40px; /* Ensure minimum touch target size */
+  min-height: 40px;
+  border-radius: 0; /* Square shape */
+  border: none;
+  background: rgba(49, 49, 50, 0.9);
+  color: #ffffff;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  -webkit-tap-highlight-color: transparent; /* Remove tap highlight on mobile */
+}
+
+/* Hover/Active states */
+.mobile-nav-arrow:hover {
+  background: rgba(49, 49, 50, 1);
+  transform: scale(1.05);
+}
+
+.mobile-nav-arrow:active {
+  transform: scale(0.95);
+}
+
+/* SVG icon styling */
+.mobile-nav-arrow svg {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+}
+
+/* Disabled state (at first/last section) */
+.mobile-nav-arrow[style*="opacity: 0.3"] {
+  cursor: not-allowed;
+}
+
+/* Hide mobile nav on large screens where vertical nav appears */
+@media (min-width: 1400px) {
+  .mobile-nav {
+    display: none;
+  }
+}
+
 /* Responsive: stack columns on small screens */
 @media (max-width: 900px) {
-  #app {
+  .stock-section {
     padding-left: 52px;
-    padding-right: 52px;
+    padding-right: 23px;
+    padding-top: var(--space-4);
+    padding-bottom: var(--space-4);
   }
   
   .section-inner {
     width: 100%;
     grid-template-columns: 1fr;
+    gap: var(--space-4);
+    padding: 0;
+    min-height: auto;
   }
   
   .sticky-chart {
     position: static;
-    margin-bottom: var(--space-4);
+    margin-bottom: 0;
   }
   
   .chart-container {
     height: 400px;
     min-height: 300px;
+  }
+  
+  .stock-content {
+    gap: var(--space-3);
+    padding-bottom: 0;
+  }
+}
+
+@media (max-width: 640px) {
+  .stock-section {
+    padding-left: 52px; /* Keep space for mobile nav arrows */
+    padding-right: var(--space-3);
+    padding-top: var(--space-3);
+    padding-bottom: var(--space-4);
+  }
+  
+  .section-inner {
+    gap: var(--space-3);
+  }
+  
+  .chart-container {
+    height: 350px;
+    min-height: 280px;
+  }
+  
+  .stock-content {
+    gap: var(--space-2);
+  }
+  
+  .stock-description {
+    font-size: 15px;
+    line-height: 1.5;
+  }
+  
+  .metrics-sections-wrapper {
+    gap: 48px;
+    margin-top: var(--space-4);
   }
 }
   
